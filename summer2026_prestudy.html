@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer 2026 Pre-Study &mdash; Jon</title>
+<style>
+:root{--bg:#1a1a1a;--surface:#222;--surface2:#2a2a2a;--gold:#c9a84c;--gold-dim:#a07c30;--gold-faint:#c9a84c22;--text:#e8e0cc;--text-dim:#9a9080;--eam:#d4845a;--ac:#6aabcc;--rest:#7aaa7a;--block:#9988bb;--border:#333;--hammer:#b5845a;--mac:#c47aaa;--wm:#5a8a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:Georgia,serif;font-size:15px;line-height:1.6;}
+.tab-bar{display:flex;border-bottom:2px solid var(--gold-dim);background:var(--surface2);}
+.tab-btn{padding:12px 22px;font-size:0.85rem;font-family:'Courier New',monospace;color:var(--text-dim);cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;}
+.tab-btn:hover{color:var(--gold);}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+.tab-panel{display:none;padding:16px;max-width:900px;margin:0 auto;}
+.tab-panel.active{display:block;}
+h1{font-size:1.4rem;color:var(--gold);border-bottom:1px solid var(--gold-dim);padding-bottom:10px;margin-bottom:6px;}
+.subtitle{color:var(--text-dim);font-size:0.85rem;margin-bottom:20px;font-style:italic;}
+.btn{font-size:0.78rem;font-family:'Courier New',monospace;background:var(--surface2);border:1px solid var(--gold-dim);color:var(--gold);padding:5px 12px;border-radius:4px;cursor:pointer;}
+.btn:hover{background:var(--gold-faint);}
+.controls{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.note-box{background:var(--gold-faint);border:1px solid var(--gold-dim);border-radius:4px;padding:8px 10px;font-size:0.82rem;color:var(--text-dim);font-style:italic;margin-top:8px;}
+.bday-box{background:#2a1a2a;border:1px solid var(--mac);border-radius:4px;padding:12px;font-size:1rem;color:var(--mac);margin-top:8px;text-align:center;}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;font-size:0.8rem;font-family:'Courier New',monospace;}
+.legend-item{display:flex;align-items:center;gap:5px;}
+.legend-dot{width:10px;height:10px;border-radius:50%;}
+.resource-note{background:var(--surface);border-left:3px solid var(--gold);padding:10px 14px;margin-bottom:22px;font-size:0.83rem;color:var(--text-dim);border-radius:0 4px 4px 0;}
+.resource-note strong{color:var(--gold);}
+.progress-label{font-size:0.78rem;color:var(--text-dim);font-family:'Courier New',monospace;margin-bottom:6px;}
+.progress-bar-wrap{background:var(--surface2);border-radius:4px;height:6px;margin-bottom:20px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:4px;transition:width 0.3s;}
+.day{background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-bottom:14px;overflow:hidden;}
+.day-header{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+.day-header:hover{background:#2f2f2f;}
+.day-header.bday{background:#1e0f1e;border-left:3px solid var(--mac);}
+.day-num{font-size:0.75rem;color:var(--text-dim);font-family:'Courier New',monospace;min-width:44px;}
+.day-date{font-size:1rem;color:var(--gold);font-weight:bold;min-width:120px;}
+.day-label{font-size:0.82rem;color:var(--text);flex:1;}
+.day-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tag{font-size:0.7rem;padding:2px 7px;border-radius:10px;font-family:'Courier New',monospace;font-weight:bold;}
+.tag-eam{background:var(--eam);color:#1a1a1a;}
+.tag-ac{background:var(--ac);color:#1a1a1a;}
+.tag-rest{background:var(--rest);color:#1a1a1a;}
+.tag-block{background:var(--block);color:#1a1a1a;}
+.tag-bday{background:var(--mac);color:#1a1a1a;}
+.chevron{color:var(--gold-dim);font-size:0.8rem;transition:transform 0.2s;min-width:14px;text-align:center;}
+.chevron.open{transform:rotate(90deg);}
+.day-body{display:none;padding:12px 14px;}
+.day-body.open{display:block;}
+.task-section{margin-bottom:12px;}
+.task-section-label{font-size:0.72rem;font-family:'Courier New',monospace;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;padding:2px 8px;border-radius:3px;display:inline-block;}
+.label-eam{background:var(--eam);color:#1a1a1a;}
+.label-ac{background:var(--ac);color:#1a1a1a;}
+.label-block{background:var(--block);color:#1a1a1a;}
+.label-hammer{background:var(--hammer);color:#1a1a1a;}
+.label-mac{background:var(--mac);color:#1a1a1a;}
+.label-wm{background:var(--wm);color:#1a1a1a;}
+.task-list{list-style:none;}
+.task-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;border-bottom:1px solid #2a2a2a;font-size:0.87rem;cursor:pointer;}
+.task-list li:last-child{border-bottom:none;}
+.task-list li.done{opacity:0.45;text-decoration:line-through;}
+.task-list li .check{width:16px;height:16px;border:1px solid var(--gold-dim);border-radius:3px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--gold);}
+.task-list li.done .check{background:var(--gold-faint);}
+.task-list li .task-text{flex:1;}
+.cr{font-family:'Courier New',monospace;font-size:0.8rem;color:var(--gold);}
+.cp{font-size:0.78rem;color:var(--text-dim);font-style:italic;margin-top:2px;}
+.carries-in{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px;margin-top:10px;}
+.carries-in-title{color:var(--gold);font-size:0.85rem;font-family:'Courier New',monospace;letter-spacing:0.06em;margin-bottom:8px;}
+.carries-in-row{font-size:0.82rem;color:var(--text-dim);line-height:1.9;}
+.sched-nav{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.sched-nav-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);padding:5px 10px;border-radius:4px;cursor:pointer;font-size:0.8rem;font-family:'Courier New',monospace;}
+.sched-nav-btn:hover{border-color:var(--gold-dim);color:var(--gold);}
+.sched-day-select{background:var(--surface2);border:1px solid var(--gold-dim);color:var(--gold);padding:5px 10px;border-radius:4px;font-family:'Courier New',monospace;font-size:0.82rem;flex:1;min-width:160px;}
+.sched-header{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;}
+.sched-date-label{font-size:1.2rem;color:var(--gold);font-weight:bold;}
+.sched-desc{font-size:0.82rem;color:var(--text-dim);font-style:italic;}
+.schedule-grid{display:flex;flex-direction:column;gap:2px;}
+.hour-row{display:flex;align-items:stretch;min-height:36px;}
+.hour-label{width:52px;flex-shrink:0;font-family:'Courier New',monospace;font-size:0.72rem;color:var(--text-dim);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;}
+.hour-block{flex:1;display:flex;align-items:center;padding:6px 10px;font-size:0.82rem;border-radius:4px;min-height:36px;cursor:pointer;user-select:none;}
+.hour-block.type-free{background:#2a2a2a;color:var(--text-dim);border:1px solid #333;}
+.hour-block.type-eam{background:#3a2218;border-left:3px solid var(--eam);color:var(--eam);}
+.hour-block.type-ac{background:#182535;border-left:3px solid var(--ac);color:var(--ac);}
+.hour-block.type-block{background:#251e33;border-left:3px solid var(--block);color:var(--block);cursor:default;}
+.hour-block.type-rest{background:#1a2a1a;border-left:3px solid var(--rest);color:var(--rest);}
+.hour-block.type-journal{background:#2a2518;border-left:3px solid var(--gold-dim);color:var(--gold);}
+.hour-block.type-hammer{background:#2e1e10;border-left:3px solid var(--hammer);color:var(--hammer);}
+.hour-block.type-mac{background:#2a1228;border-left:3px solid var(--mac);color:var(--mac);}
+.hour-block.type-bday{background:#1e0a1e;border-left:3px solid var(--mac);color:var(--mac);cursor:default;}
+.hour-block.type-wm{background:#0f1e14;border-left:3px solid var(--wm);color:var(--wm);}
+.hour-block.done-sched{opacity:0.35;text-decoration:line-through;}
+.sched-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;font-size:0.75rem;font-family:'Courier New',monospace;}
+.sched-legend-item{display:flex;align-items:center;gap:5px;}
+.sched-legend-dot{width:8px;height:8px;border-radius:2px;}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pre-Study 2026">
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(e=>console.log('SW error:',e));
+  });
+}
+</script>
+</head>
+<body>
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('checklist')">checklist</button>
+  <button class="tab-btn" onclick="switchTab('schedule')">daily schedule</button>
+</div>
+
+<!-- TAB 1 CHECKLIST -->
+<div class="tab-panel active" id="tab-checklist">
+<h1>12-Day Pre-Study Plan &mdash; Summer 2026</h1>
+<p class="subtitle">Thu Jun 25 &ndash; Sun Jul 5 &middot; Syllabus-sequenced &middot; Birthday Jul 3 fully off &middot; Quarter starts Mon Jul 6</p>
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--eam)"></div>EAM310</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--ac)"></div>AC300</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--hammer)"></div>Hammer (companion)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--mac)"></div>Maciocia Tongue (companion)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--wm)"></div>WM360 (light preview)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--block)"></div>Fixed</div>
+</div>
+<div class="resource-note">
+  <strong>Companion book rules:</strong> Hammer and Maciocia Tongue are cross-reference only &mdash; open alongside FCM, do not type separate notes.<br>
+  <strong>Deadman Point Cards:</strong> Active recall after each AC300 channel typed.<br>
+  <strong>WM360:</strong> Light Marieb skim only now. Reactive study guides built during quarter from slides/transcripts.<br>
+  <strong>EAM301:</strong> Read assigned chapter before each class only. No pre-study.
+</div>
+<div class="progress-label" id="progressLabel">Progress: 0 tasks</div>
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+<div class="controls">
+  <button class="btn" onclick="expandAll()">Expand All</button>
+  <button class="btn" onclick="collapseAll()">Collapse All</button>
+  <button class="btn" onclick="clearChecklist()">Clear Checks</button>
+</div>
+
+<div class="day" id="day1">
+  <div class="day-header" onclick="toggleDay('day1')"><span class="day-num">Day 1</span><span class="day-date">Thu Jun 25</span><span class="day-label">EAM310 &mdash; FCM Ch. 30 + Hammer Ch. 4&ndash;5</span><div class="day-tags"><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day1">&#8250;</span></div>
+  <div class="day-body" id="body-day1">
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 1</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 30</span> &mdash; Pulse Diagnosis &middot; Type full notes</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-hammer">Hammer &mdash; companion to FCM Ch. 30</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 4</span> &mdash; Taking the Pulse: Methodology &middot; Cross-reference while typing<br><span class="cp">Depth, level, qualities, procedure &mdash; deepens FCM pulse positioning</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 5</span> &mdash; Classification &amp; Nomenclature of Pulse Qualities &middot; Cross-reference<br><span class="cp">Normal pulse + classification table &mdash; maps to FCM pulse quality overview</span></span></li>
+    </ul></div>
+    <div class="note-box">Pulse/Tongue Journal #1 due Week 2 (Jul 17). Begin recording your own pulse and tongue daily from today.</div>
+  </div>
+</div>
+
+<div class="day" id="day2">
+  <div class="day-header" onclick="toggleDay('day2')"><span class="day-num">Day 2</span><span class="day-date">Fri Jun 26</span><span class="day-label">FCM Ch. 31 + CAM Ch. 13 + Maciocia Tongue Ch. 2&ndash;3</span><div class="day-tags"><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day2">&#8250;</span></div>
+  <div class="day-body" id="body-day2">
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 1&ndash;2</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 31</span> &mdash; Tongue Diagnosis (observation pillar) &middot; Type full notes</span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM Ch. 13</span> &mdash; Tongue &amp; Pulse Examination &middot; Type full notes<br><span class="cp">Schrier's running reference Weeks 1&ndash;4</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-mac">Maciocia Tongue &mdash; companion to FCM Ch. 31</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 2</span> &mdash; Tongue Examination: Overview &middot; Cross-reference<br><span class="cp">Western anatomy, examination method, normal tongue &mdash; grounds FCM Ch. 31 clinically</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 3</span> &mdash; Tongue Signs: Internal Organs &middot; Cross-reference<br><span class="cp">Tongue zone-to-organ mapping &mdash; essential visual framework alongside FCM Ch. 31</span></span></li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="day" id="day3">
+  <div class="day-header" onclick="toggleDay('day3')"><span class="day-num">Day 3</span><span class="day-date">Sat Jun 27</span><span class="day-label">EAM310 &mdash; FCM Ch. 26 morning &middot; Dance 3PM</span><div class="day-tags"><span class="tag tag-eam">EAM310</span><span class="tag tag-block">Dance 3PM</span></div><span class="chevron" id="chev-day3">&#8250;</span></div>
+  <div class="day-body" id="body-day3">
+    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
+      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Dance &mdash; Ruxandra 3:00 PM &middot; Notes until 1PM max</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 9</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 26</span> &mdash; Diagnosis by Listening &amp; Smelling &middot; Type full notes<br><span class="cp">Shorter chapter &mdash; 2&ndash;3 hrs max. Done now = zero pressure in Week 9.</span></span></li>
+    </ul></div>
+    <div class="note-box">Ch. 26 is short &mdash; finish by 1PM, rest before dance. Birthday next Friday &mdash; everything on track.</div>
+  </div>
+</div>
+
+<div class="day" id="day4">
+  <div class="day-header" onclick="toggleDay('day4')"><span class="day-num">Day 4</span><span class="day-date">Sun Jun 28</span><span class="day-label">FCM Ch. 25 + Hammer Ch. 6&ndash;11</span><div class="day-tags"><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day4">&#8250;</span></div>
+  <div class="day-body" id="body-day4">
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 3</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 25</span> &mdash; 28 Pulse Qualities &middot; Type full notes</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-hammer">Hammer &mdash; companion to FCM Ch. 25</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 6</span> &mdash; Rhythm &amp; Stability &middot; Cross-reference<br><span class="cp">Maps to FCM hurried, knotted, intermittent pulses</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 7</span> &mdash; Rate &middot; Cross-reference<br><span class="cp">Maps to FCM rapid and slow pulses</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 8</span> &mdash; Volume &middot; Cross-reference<br><span class="cp">Maps to FCM full, empty, flooding pulses</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 9</span> &mdash; Depth &middot; Cross-reference<br><span class="cp">Maps to FCM floating and deep pulses</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 10</span> &mdash; Size: Width &amp; Length &middot; Cross-reference<br><span class="cp">Maps to FCM thin, long, short pulses</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 11</span> &mdash; Shape &middot; Cross-reference<br><span class="cp">Maps to FCM slippery, wiry, tight pulses</span></span></li>
+    </ul></div>
+    <div class="note-box">Type FCM Ch. 25 fully first, then cross-reference Hammer chapter by chapter. Full day available.</div>
+  </div>
+</div>
+
+<div class="day" id="day5">
+  <div class="day-header" onclick="toggleDay('day5')"><span class="day-num">Day 5</span><span class="day-date">Mon Jun 29</span><span class="day-label">AC300 &mdash; MOA framework + LU, LI, ST, SP channels</span><div class="day-tags"><span class="tag tag-ac">AC300</span></div><span class="chevron" id="chev-day5">&#8250;</span></div>
+  <div class="day-body" id="body-day5">
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 1</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 11&ndash;16</span> &mdash; Channel Theory Overview &middot; Type full notes<br><span class="cp">CAM p. 1&ndash;68 = review from EAM302/303 &mdash; pull your old notes instead of retyping</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 2</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 66&ndash;68</span> + <span class="cr">MOA p. 73&ndash;75</span> &mdash; Lung Channel &middot; Type notes + draw<br><span class="cp">After: pull Lung card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 95&ndash;99</span> &mdash; Large Intestine Channel &middot; Type notes + draw<br><span class="cp">After: pull LI card &middot; active recall</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 3</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 68&ndash;71</span> + <span class="cr">MOA p. 125&ndash;129</span> &mdash; Stomach Channel &middot; Type notes + draw<br><span class="cp">After: pull Stomach card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 177&ndash;181</span> &mdash; Spleen Channel &middot; Type notes + draw<br><span class="cp">After: pull Spleen card &middot; active recall</span></span></li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="day" id="day6">
+  <div class="day-header" onclick="toggleDay('day6')"><span class="day-num">Day 6</span><span class="day-date">Tue Jun 30</span><span class="day-label">FCM Ch. 23 + Maciocia Tongue Ch. 4&ndash;8</span><div class="day-tags"><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day6">&#8250;</span></div>
+  <div class="day-body" id="body-day6">
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 4</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 23</span> &mdash; Tongue Diagnosis (deep-dive) &middot; Type full notes</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-mac">Maciocia Tongue &mdash; companion to FCM Ch. 23</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 4</span> &mdash; Eight Principles in Tongue Diagnosis &middot; Cross-reference<br><span class="cp">Exterior/interior, cold/heat, deficiency/excess &mdash; maps to FCM Ch. 23 pattern differentiation</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 5</span> &mdash; Tongue Spirit &amp; Body Color &middot; Cross-reference<br><span class="cp">Full color taxonomy: pale, red, dark red, purple, blue</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 6</span> &mdash; Tongue Body Shape &middot; Cross-reference<br><span class="cp">Thin, swollen, stiff, flaccid, cracked, tooth-marked &mdash; detailed shape pathology for Journal</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 7</span> &mdash; Tongue Coating &middot; Cross-reference<br><span class="cp">Full coating taxonomy (white, yellow, gray, black) + Eight Principles &mdash; most clinically dense</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 8</span> &mdash; Tongue Diagnosis in the Clinic &middot; Cross-reference<br><span class="cp">Integration of tongue + pulse, prognosis, herbal therapy &mdash; ties everything together</span></span></li>
+    </ul></div>
+    <div class="note-box">Type FCM Ch. 23 fully first. Then cross-reference Maciocia Ch. 4&ndash;8 section by section as you review. Heaviest companion day.</div>
+  </div>
+</div>
+
+<div class="day" id="day7">
+  <div class="day-header" onclick="toggleDay('day7')"><span class="day-num">Day 7</span><span class="day-date">Wed Jul 1</span><span class="day-label">Korean 9AM &middot; AC300 &mdash; HT, SI, BL, KI channels</span><div class="day-tags"><span class="tag tag-block">Korean 9AM</span><span class="tag tag-ac">AC300</span></div><span class="chevron" id="chev-day7">&#8250;</span></div>
+  <div class="day-body" id="body-day7">
+    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
+      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Korean &mdash; Soohyeon 9:00 AM (iTalki)</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 4</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 69&ndash;74</span> + <span class="cr">MOA p. 209&ndash;212</span> &mdash; Heart Channel &middot; Type notes + draw<br><span class="cp">After: pull Heart card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 227&ndash;230</span> &mdash; Small Intestine Channel &middot; Type notes + draw<br><span class="cp">After: pull SI card &middot; active recall</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 5</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 73&ndash;77</span> + <span class="cr">MOA p. 251&ndash;256</span> &mdash; Bladder Channel &middot; Type notes + draw<br><span class="cp">After: pull Bladder card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 331&ndash;335</span> &mdash; Kidney Channel &middot; Type notes + draw<br><span class="cp">After: pull Kidney card &middot; active recall</span></span></li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="day" id="day8">
+  <div class="day-header" onclick="toggleDay('day8')"><span class="day-num">Day 8</span><span class="day-date">Thu Jul 2</span><span class="day-label">AC300 &mdash; PC, TE, GB, LR + FCM Ch. 24 + WM360 preview</span><div class="day-tags"><span class="tag tag-ac">AC300</span><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day8">&#8250;</span></div>
+  <div class="day-body" id="body-day8">
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 6</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 77&ndash;82</span> + <span class="cr">MOA p. 367&ndash;370</span> &mdash; Pericardium Channel &middot; Type notes + draw<br><span class="cp">After: pull PC card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 387&ndash;390</span> &mdash; Triple Energizer Channel &middot; Type notes + draw<br><span class="cp">After: pull TE card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 417&ndash;421</span> &mdash; Gall Bladder Channel &middot; Type notes + draw<br><span class="cp">After: pull GB card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 469&ndash;472</span> &mdash; Liver Channel &middot; Type notes + draw<br><span class="cp">After: pull Liver card &middot; active recall &mdash; all 12 primary channels complete</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 7&ndash;8</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 24</span> &mdash; Diagnosis by Inquiry (Ten Questions) &middot; Type full notes</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-wm">WM360 &mdash; light preview</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text">Skim Marieb table of contents &middot; Note which A&amp;P III topics carry from WM340/WM350<br><span class="cp">Reactive strategy &mdash; full study guides built during quarter from lecture slides/transcripts</span></span></li>
+    </ul></div>
+    <div class="note-box">Big day &mdash; birthday tomorrow. Finish everything and enjoy the night.</div>
+  </div>
+</div>
+
+<div class="day" id="day9">
+  <div class="day-header bday" onclick="toggleDay('day9')"><span class="day-num">Day 9</span><span class="day-date">Fri Jul 3 &#127874;</span><span class="day-label">BIRTHDAY &mdash; fully off &middot; no studying</span><div class="day-tags"><span class="tag tag-bday">Birthday</span></div><span class="chevron" id="chev-day9">&#8250;</span></div>
+  <div class="day-body" id="body-day9">
+    <div class="bday-box">&#127874; Happy Birthday. Everything is done. All EAM310 chapters typed. All 12 primary channels complete. Take the day fully off &mdash; you earned it.</div>
+  </div>
+</div>
+
+<div class="day" id="day10">
+  <div class="day-header" onclick="toggleDay('day10')"><span class="day-num">Day 10</span><span class="day-date">Sat Jul 4</span><span class="day-label">Dance 3PM &middot; July 4th &middot; Extraordinary vessels (optional)</span><div class="day-tags"><span class="tag tag-block">Dance 3PM</span><span class="tag tag-rest">Holiday</span></div><span class="chevron" id="chev-day10">&#8250;</span></div>
+  <div class="day-body" id="body-day10">
+    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
+      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Dance &mdash; Ruxandra 3:00 PM &middot; Stop by 2:00 PM</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 7 (optional morning only)</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 82&ndash;89</span> + <span class="cr">MOA p. 17&ndash;25</span> &mdash; Eight Extraordinary Vessels &middot; Type notes<br><span class="cp">Post-midterm AC300 content &mdash; bonus only. Only if energized after birthday.</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 495&ndash;497, 529&ndash;533</span> &mdash; Du Mai &amp; Ren Mai pathways &middot; Type notes</span></li>
+    </ul></div>
+    <div class="note-box">Everything critical is already done. This day is bonus only. Stop by noon for dance.</div>
+  </div>
+</div>
+
+<div class="day" id="day11">
+  <div class="day-header" onclick="toggleDay('day11')"><span class="day-num">Day 11</span><span class="day-date">Sun Jul 5</span><span class="day-label">Buffer &middot; overflow &middot; organize &middot; quarter starts tomorrow</span><div class="day-tags"><span class="tag tag-ac">AC300</span><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day11">&#8250;</span></div>
+  <div class="day-body" id="body-day11">
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; buffer</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text">Catch up on any incomplete channel sections &middot; Redraw anything that needs it</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; buffer</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text">Skim CAM Ch. 2&ndash;4 &amp; 11 if time &mdash; Schrier designated review chapters only, not new reading</span></li>
+    </ul></div>
+    <div class="note-box">Quarter starts Mon Jul 6. All EAM310 new chapters typed. All 12 primary channels done. Class = reinforcement. System intact.</div>
+  </div>
+</div>
+
+<div class="carries-in">
+  <div class="carries-in-title">WHAT CARRIES INTO THE QUARTER</div>
+  <div class="carries-in-row">
+    <span style="color:var(--ac)">AC300:</span> Extraordinary vessels (Wk 7), secondary/divergent/sinew channels (Wk 8), point categories (Wk 9) &mdash; all post-midterm.<br>
+    <span style="color:var(--eam)">EAM310:</span> All new chapters pre-typed including Ch. 26. CAM Ch. 12 &mdash; skim when Schrier first assigns it in Wk 4.<br>
+    <span style="color:var(--wm)">WM360:</span> Reactive during quarter &mdash; upload slides/transcripts, build study guides then.<br>
+    <span style="color:var(--text-dim)">EAM301:</span> Read assigned chapter before each class only. No pre-study.<br>
+    <span style="color:var(--hammer)">Hammer:</span> Ch. 12&ndash;13 (Individual Positions, Depths &amp; Common Qualities) &mdash; reference during quarter as pulse practice deepens.<br>
+    <span style="color:var(--mac)">Maciocia Tongue:</span> Ch. 9 Case Histories + Appendices &mdash; use during quarter alongside Journal practice.
+  </div>
+</div>
+</div>
+
+<!-- TAB 2 SCHEDULE -->
+<div class="tab-panel" id="tab-schedule">
+<h1>Daily Schedule &mdash; Pre-Study Break</h1>
+<p class="subtitle">Thu Jun 25 &ndash; Sun Jul 5 &middot; Korean &amp; Dance hard-blocked &middot; Jul 3 Birthday = fully off</p>
+<div class="sched-legend">
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--eam)"></div>EAM310</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--ac)"></div>AC300</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--hammer)"></div>Hammer</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--mac)"></div>Maciocia Tongue</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--wm)"></div>WM360</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--block)"></div>Fixed</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--gold)"></div>Journal</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--rest)"></div>Rest</div>
+  <div class="sched-legend-item"><div class="sched-legend-dot" style="background:#444"></div>Free</div>
+</div>
+<div class="sched-nav">
+  <button class="sched-nav-btn" onclick="prevDay()">&#9664; Prev</button>
+  <select class="sched-day-select" id="daySelect" onchange="renderDay(this.value)">
+    <option value="0">Thu Jun 25 &mdash; Day 1</option>
+    <option value="1">Fri Jun 26 &mdash; Day 2</option>
+    <option value="2">Sat Jun 27 &mdash; Day 3 (Dance 3PM)</option>
+    <option value="3">Sun Jun 28 &mdash; Day 4</option>
+    <option value="4">Mon Jun 29 &mdash; Day 5</option>
+    <option value="5">Tue Jun 30 &mdash; Day 6</option>
+    <option value="6">Wed Jul 1 &mdash; Day 7 (Korean)</option>
+    <option value="7">Thu Jul 2 &mdash; Day 8</option>
+    <option value="8">Fri Jul 3 &mdash; Day 9 &#127874; BIRTHDAY OFF</option>
+    <option value="9">Sat Jul 4 &mdash; Day 10 (Dance + Holiday)</option>
+    <option value="10">Sun Jul 5 &mdash; Day 11 (Buffer)</option>
+  </select>
+  <button class="sched-nav-btn" onclick="nextDay()">Next &#9654;</button>
+</div>
+<div class="sched-header">
+  <span class="sched-date-label" id="schedDateLabel"></span>
+  <span class="sched-desc" id="schedDesc"></span>
+</div>
+<div class="schedule-grid" id="scheduleGrid"></div>
+</div>
+
+<script>
+const SK='summer2026_v5';
+function load(){try{return JSON.parse(localStorage.getItem(SK))||{};}catch(e){return{};}}
+function save(s){localStorage.setItem(SK,JSON.stringify(s));}
+function switchTab(t){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='checklist')||(i===1&&t==='schedule')));
+  document.getElementById('tab-checklist').classList.toggle('active',t==='checklist');
+  document.getElementById('tab-schedule').classList.toggle('active',t==='schedule');
+}
+function getTaskId(li){const d=li.closest('.day').id;const ts=Array.from(li.closest('.task-list').querySelectorAll('li[onclick]'));return 'chk_'+d+'_'+ts.indexOf(li);}
+function updateProgress(){
+  const all=document.querySelectorAll('.task-list li[onclick]');
+  const done=document.querySelectorAll('.task-list li[onclick].done');
+  const p=all.length?Math.round(done.length/all.length*100):0;
+  document.getElementById('progressFill').style.width=p+'%';
+  document.getElementById('progressLabel').textContent='Progress: '+done.length+' / '+all.length+' tasks ('+p+'%)';
+}
+function checkTask(li){li.classList.toggle('done');const s=load();s[getTaskId(li)]=li.classList.contains('done');save(s);updateProgress();}
+function toggleDay(id){const b=document.getElementById('body-'+id),c=document.getElementById('chev-'+id);const o=b.classList.toggle('open');c.classList.toggle('open',o);}
+function expandAll(){document.querySelectorAll('.day-body').forEach(b=>b.classList.add('open'));document.querySelectorAll('.chevron').forEach(c=>c.classList.add('open'));}
+function collapseAll(){document.querySelectorAll('.day-body').forEach(b=>b.classList.remove('open'));document.querySelectorAll('.chevron').forEach(c=>c.classList.remove('open'));}
+function clearChecklist(){if(!confirm('Clear all checkmarks?'))return;document.querySelectorAll('.task-list li[onclick]').forEach(li=>li.classList.remove('done'));const s=load();Object.keys(s).filter(k=>k.startsWith('chk_')).forEach(k=>delete s[k]);save(s);updateProgress();}
+
+const DAYS=[
+  {label:'Thu Jun 25',desc:'Day 1 - FCM Ch. 30 + Hammer Ch. 4-5',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 30 - Pulse Diagnosis (type notes)'},{h:8,t:'eam',l:'FCM Ch. 30 - continued'},{h:9,t:'eam',l:'FCM Ch. 30 - continued'},{h:10,t:'hammer',l:'Hammer Ch. 4 - Taking the Pulse: Methodology (cross-ref)'},{h:11,t:'hammer',l:'Hammer Ch. 5 - Classification & Nomenclature (cross-ref)'},{h:12,t:'rest',l:'Lunch / break'},{h:13,t:'eam',l:'Review FCM Ch. 30 notes + annotate from Hammer'},{h:14,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:15,t:'free',l:'Free'},{h:16,t:'free',l:'Free'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Fri Jun 26',desc:'Day 2 - FCM Ch. 31 + CAM Ch. 13 + Maciocia Tongue Ch. 2-3',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 31 - Tongue/Observation Diagnosis (type notes)'},{h:8,t:'eam',l:'FCM Ch. 31 - continued'},{h:9,t:'mac',l:'Maciocia Tongue Ch. 2 - Examination Overview (cross-ref)'},{h:10,t:'mac',l:'Maciocia Tongue Ch. 3 - Tongue Signs: Internal Organs (cross-ref)'},{h:11,t:'eam',l:'CAM Ch. 13 - Tongue & Pulse Examination (type notes)'},{h:12,t:'eam',l:'CAM Ch. 13 - continued'},{h:13,t:'rest',l:'Lunch / break'},{h:14,t:'eam',l:'CAM Ch. 13 - finish + review all notes'},{h:15,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:16,t:'free',l:'Free'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Sat Jun 27',desc:'Day 3 - FCM Ch. 26 morning until 1PM / Dance 3PM',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 26 - Listening & Smelling Diagnosis (type notes)'},{h:8,t:'eam',l:'FCM Ch. 26 - continued'},{h:9,t:'eam',l:'FCM Ch. 26 - continued'},{h:10,t:'eam',l:'FCM Ch. 26 - finish + review'},{h:11,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:12,t:'rest',l:'Lunch - stop studying by 1PM'},{h:13,t:'rest',l:'Rest / prepare for dance'},{h:14,t:'rest',l:'Travel / prep'},{h:15,t:'block',l:'DANCE - Ruxandra (hard block)'},{h:16,t:'block',l:'DANCE - continued'},{h:17,t:'rest',l:'Post-dance rest'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Sun Jun 28',desc:'Day 4 - FCM Ch. 25 + Hammer Ch. 6-11 (full day)',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 25 - 28 Pulse Qualities (type notes)'},{h:8,t:'eam',l:'FCM Ch. 25 - continued'},{h:9,t:'eam',l:'FCM Ch. 25 - continued'},{h:10,t:'hammer',l:'Hammer Ch. 6 Rhythm + Ch. 7 Rate (cross-ref)'},{h:11,t:'hammer',l:'Hammer Ch. 8 Volume + Ch. 9 Depth (cross-ref)'},{h:12,t:'rest',l:'Lunch / break'},{h:13,t:'hammer',l:'Hammer Ch. 10 Size + Ch. 11 Shape (cross-ref)'},{h:14,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:15,t:'eam',l:'Review FCM Ch. 25 notes'},{h:16,t:'free',l:'Free'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Mon Jun 29',desc:'Day 5 - AC300 MOA framework + LU, LI, ST, SP channels',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'ac',l:'MOA p. 11-16 - Channel Theory Overview (type notes)'},{h:8,t:'ac',l:'CAM p. 66-68 + MOA p. 73-75 - Lung channel (type + draw)'},{h:9,t:'ac',l:'Lung - continued / Deadman card recall'},{h:10,t:'ac',l:'MOA p. 95-99 - Large Intestine channel (type + draw) / Deadman card recall'},{h:11,t:'rest',l:'Break / lunch'},{h:12,t:'ac',l:'CAM p. 68-71 + MOA p. 125-129 - Stomach channel (type + draw)'},{h:13,t:'ac',l:'Stomach - continued / Deadman card recall'},{h:14,t:'ac',l:'MOA p. 177-181 - Spleen channel (type + draw) / Deadman card recall'},{h:15,t:'ac',l:'Review & redraw all 4 channels'},{h:16,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:17,t:'rest',l:'Break / wind down'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Tue Jun 30',desc:'Day 6 - FCM Ch. 23 + Maciocia Tongue Ch. 4-8',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 23 - Tongue Diagnosis deep-dive (type notes)'},{h:8,t:'eam',l:'FCM Ch. 23 - continued'},{h:9,t:'eam',l:'FCM Ch. 23 - continued'},{h:10,t:'eam',l:'FCM Ch. 23 - finish'},{h:11,t:'rest',l:'Break / lunch'},{h:12,t:'mac',l:'Maciocia Tongue Ch. 4 Eight Principles + Ch. 5 Body Color (cross-ref)'},{h:13,t:'mac',l:'Maciocia Tongue Ch. 6 Body Shape + Ch. 7 Coating (cross-ref)'},{h:14,t:'mac',l:'Maciocia Tongue Ch. 8 - Tongue Diagnosis in the Clinic (cross-ref)'},{h:15,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:16,t:'eam',l:'Review FCM Ch. 23 notes'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Wed Jul 1',desc:'Day 7 - Korean 9AM / AC300 HT, SI, BL, KI channels',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'rest',l:'Light prep before Korean'},{h:8,t:'rest',l:'Prepare for Korean lesson'},{h:9,t:'block',l:'KOREAN - Soohyeon / iTalki (hard block)'},{h:10,t:'block',l:'KOREAN - continued'},{h:11,t:'rest',l:'Break after lesson / lunch'},{h:12,t:'ac',l:'CAM p. 69-74 + MOA p. 209-212 - Heart channel (type + draw) / Deadman card recall'},{h:13,t:'ac',l:'MOA p. 227-230 - Small Intestine channel (type + draw) / Deadman card recall'},{h:14,t:'ac',l:'CAM p. 73-77 + MOA p. 251-256 - Bladder channel (type + draw)'},{h:15,t:'ac',l:'Bladder - continued / Deadman card recall'},{h:16,t:'ac',l:'MOA p. 331-335 - Kidney channel (type + draw) / Deadman card recall'},{h:17,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Thu Jul 2',desc:'Day 8 - AC300 PC,TE,GB,LR + FCM Ch. 24 + WM360 preview',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'ac',l:'CAM p. 77-82 + MOA p. 367-370 - Pericardium channel (type + draw)'},{h:8,t:'ac',l:'MOA p. 387-390 - Triple Energizer channel (type + draw) / Deadman card recall'},{h:9,t:'ac',l:'MOA p. 417-421 - Gall Bladder channel (type + draw) / Deadman card recall'},{h:10,t:'ac',l:'MOA p. 469-472 - Liver channel (type + draw) / Deadman card recall - 12 channels complete'},{h:11,t:'rest',l:'Break / lunch'},{h:12,t:'eam',l:'FCM Ch. 24 - Diagnosis by Inquiry / Ten Questions (type notes)'},{h:13,t:'eam',l:'FCM Ch. 24 - continued'},{h:14,t:'eam',l:'FCM Ch. 24 - finish'},{h:15,t:'wm',l:'WM360 - skim Marieb TOC / note A&P III topics carrying from prior courses'},{h:16,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:17,t:'rest',l:'Break / wind down - birthday tomorrow'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Fri Jul 3 - BIRTHDAY',desc:'Day 9 - FULLY OFF',slots:[
+    {h:6,t:'bday',l:'Birthday - sleep in'},{h:7,t:'bday',l:'Free'},{h:8,t:'bday',l:'Free'},{h:9,t:'bday',l:'Free'},{h:10,t:'bday',l:'Free'},{h:11,t:'bday',l:'Free'},{h:12,t:'bday',l:'Free'},{h:13,t:'bday',l:'Free'},{h:14,t:'bday',l:'Free'},{h:15,t:'bday',l:'Free'},{h:16,t:'bday',l:'Free'},{h:17,t:'bday',l:'Free'},{h:18,t:'bday',l:'Free - Happy Birthday Jon'},{h:19,t:'bday',l:'Free'},{h:20,t:'bday',l:'Free'},{h:21,t:'bday',l:'Free'}
+  ]},
+  {label:'Sat Jul 4',desc:'Day 10 - Dance 3PM / July 4th / Extraordinary vessels optional',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'ac',l:'Optional: CAM p. 82-89 + MOA p. 17-25 - Eight Extraordinary Vessels'},{h:8,t:'ac',l:'Optional: MOA p. 495-497, 529-533 - Du Mai & Ren Mai'},{h:9,t:'free',l:'Free'},{h:10,t:'free',l:'Free'},{h:11,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:12,t:'rest',l:'Lunch - stop by noon'},{h:13,t:'rest',l:'Prepare for dance'},{h:14,t:'rest',l:'Travel / prep'},{h:15,t:'block',l:'DANCE - Ruxandra (hard block)'},{h:16,t:'block',l:'DANCE - continued'},{h:17,t:'rest',l:'Post-dance rest'},{h:18,t:'rest',l:'Dinner / July 4th celebrations'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]},
+  {label:'Sun Jul 5',desc:'Day 11 - Buffer / overflow / organize / quarter starts tomorrow',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'ac',l:'Catch-up / overflow - any incomplete channels / redraw as needed'},{h:8,t:'eam',l:'Skim CAM Ch. 2-4 & 11 - Schrier review chapters only'},{h:9,t:'free',l:'Free'},{h:10,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:11,t:'rest',l:'Organize all notes / prep bag for Monday'},{h:12,t:'rest',l:'Lunch'},{h:13,t:'free',l:'Free afternoon'},{h:14,t:'free',l:'Free'},{h:15,t:'free',l:'Free'},{h:16,t:'free',l:'Free'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free - quarter starts tomorrow'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  ]}
+];
+
+let curDay=0;
+function renderDay(idx){
+  idx=parseInt(idx);curDay=idx;
+  document.getElementById('daySelect').value=idx;
+  const d=DAYS[idx];
+  document.getElementById('schedDateLabel').textContent=d.label;
+  document.getElementById('schedDesc').textContent=d.desc;
+  const grid=document.getElementById('scheduleGrid');grid.innerHTML='';
+  const s=load();
+  d.slots.forEach((slot,si)=>{
+    const id='sched_'+idx+'_'+si;
+    const row=document.createElement('div');row.className='hour-row';
+    const lbl=document.createElement('div');lbl.className='hour-label';lbl.textContent=slot.h+':00';
+    const blk=document.createElement('div');
+    blk.className='hour-block type-'+slot.t+(s[id]?' done-sched':'');
+    blk.textContent=slot.l;
+    if(slot.t!=='block'&&slot.t!=='bday'){blk.onclick=()=>{blk.classList.toggle('done-sched');const st=load();st[id]=blk.classList.contains('done-sched');save(st);};}
+    row.appendChild(lbl);row.appendChild(blk);grid.appendChild(row);
+  });
+}
+function prevDay(){if(curDay>0)renderDay(curDay-1);}
+function nextDay(){if(curDay<DAYS.length-1)renderDay(curDay+1);}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  const s=load();
+  document.querySelectorAll('.task-list li[onclick]').forEach(li=>{if(s[getTaskId(li)])li.classList.add('done');});
+  updateProgress();
+  const dm={'2026-06-25':'day1','2026-06-26':'day2','2026-06-27':'day3','2026-06-28':'day4','2026-06-29':'day5','2026-06-30':'day6','2026-07-01':'day7','2026-07-02':'day8','2026-07-03':'day9','2026-07-04':'day10','2026-07-05':'day11'};
+  const sm={'2026-06-25':0,'2026-06-26':1,'2026-06-27':2,'2026-06-28':3,'2026-06-29':4,'2026-06-30':5,'2026-07-01':6,'2026-07-02':7,'2026-07-03':8,'2026-07-04':9,'2026-07-05':10};
+  const tk=new Date().toISOString().slice(0,10);
+  if(dm[tk])toggleDay(dm[tk]);
+  renderDay(sm[tk]!==undefined?sm[tk]:0);
+});
+</script>
+</body>
+</html>
