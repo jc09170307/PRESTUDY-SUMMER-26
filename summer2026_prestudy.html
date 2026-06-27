@@ -43,6 +43,7 @@ h1{font-size:1.4rem;color:var(--gold);border-bottom:1px solid var(--gold-dim);pa
 .tag-rest{background:var(--rest);color:#1a1a1a;}
 .tag-block{background:var(--block);color:#1a1a1a;}
 .tag-bday{background:var(--mac);color:#1a1a1a;}
+.tag-wm{background:var(--wm);color:#1a1a1a;}
 .chevron{color:var(--gold-dim);font-size:0.8rem;transition:transform 0.2s;min-width:14px;text-align:center;}
 .chevron.open{transform:rotate(90deg);}
 .day-body{display:none;padding:12px 14px;}
@@ -114,8 +115,8 @@ if('serviceWorker' in navigator){
 
 <!-- TAB 1 CHECKLIST -->
 <div class="tab-panel active" id="tab-checklist">
-<h1>10-Day Pre-Study Plan &mdash; Summer 2026</h1>
-<p class="subtitle">Fri Jun 26 &ndash; Sun Jul 5 &middot; Syllabus-sequenced &middot; Birthday Jul 3 fully off &middot; Quarter starts Mon Jul 6</p>
+<h1>9-Day Pre-Study Plan &mdash; Summer 2026</h1>
+<p class="subtitle">Sat Jun 27 &ndash; Sun Jul 5 &middot; Syllabus-sequenced &middot; Birthday Jul 3 fully off &middot; Quarter starts Mon Jul 6</p>
 <div class="legend">
   <div class="legend-item"><div class="legend-dot" style="background:var(--eam)"></div>EAM310</div>
   <div class="legend-item"><div class="legend-dot" style="background:var(--ac)"></div>AC300</div>
@@ -126,11 +127,13 @@ if('serviceWorker' in navigator){
 </div>
 <div class="resource-note">
   <strong>Companion book rules:</strong> Hammer and Maciocia Tongue are cross-reference only &mdash; open alongside FCM, do not type separate notes.<br>
+  <strong>Hammer Ch. 4&ndash;11:</strong> Companion to FCM Ch. 25 (Palpation/Pulse) only.<br>
+  <strong>Maciocia Tongue Ch. 2&ndash;8:</strong> Companion to FCM Ch. 23 (Observation/Tongue) only.<br>
   <strong>Deadman Point Cards:</strong> Active recall after each AC300 channel typed.<br>
   <strong>WM360:</strong> Light Marieb skim only now. Reactive study guides built during quarter from slides/transcripts.<br>
   <strong>EAM301:</strong> Read assigned chapter before each class only. No pre-study.
 </div>
-<div class="progress-label" id="progressLabel">Progress: 0 tasks</div>
+<div class="progress-label" id="progressLabel">Progress: 0 / 0 tasks (0%)</div>
 <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
 <div class="controls">
   <button class="btn" onclick="expandAll()">Expand All</button>
@@ -138,58 +141,42 @@ if('serviceWorker' in navigator){
   <button class="btn" onclick="clearChecklist()">Clear Checks</button>
 </div>
 
+<!-- DAY 1 -->
 <div class="day" id="day1">
-  <div class="day-header" onclick="toggleDay('day1')"><span class="day-num">Day 1</span><span class="day-date">Fri Jun 26</span><span class="day-label">EAM310 &mdash; FCM Ch. 30 (Eight Principles) + Hammer Ch. 4&ndash;5</span><div class="day-tags"><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day1">&#8250;</span></div>
+  <div class="day-header" onclick="toggleDay('day1')">
+    <span class="day-num">Day 1</span><span class="day-date">Sat Jun 27</span>
+    <span class="day-label">FCM Ch. 30 + 31 + 26 &mdash; Pattern ID + Hearing &middot; Dance 3PM</span>
+    <div class="day-tags"><span class="tag tag-eam">EAM310</span><span class="tag tag-block">Dance 3PM</span></div>
+    <span class="chevron" id="chev-day1">&#8250;</span>
+  </div>
   <div class="day-body" id="body-day1">
-    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 1</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 30</span> &mdash; Eight Principles Pattern Identification &middot; Type full notes</span></li>
+    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
+      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Dance &mdash; Ruxandra 3:00 PM &middot; Stop studying by 1PM</span></li>
     </ul></div>
-    <div class="task-section"><span class="task-section-label label-hammer">Hammer Ch. 4&ndash;5 &mdash; companion to FCM Ch. 30</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 4</span> &mdash; Taking the Pulse: Methodology &middot; Cross-reference while typing<br><span class="cp">Depth, level, qualities, procedure &mdash; deepens FCM pulse positioning</span></span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 5</span> &mdash; Classification &amp; Nomenclature of Pulse Qualities &middot; Cross-reference<br><span class="cp">Normal pulse + classification table &mdash; maps to FCM pulse quality overview</span></span></li>
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 1 (morning until 1PM)</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 30</span> &mdash; Eight Principles Pattern Identification &middot; Type full notes (16 pp)<br><span class="cp">Exterior/Interior, Hot/Cold, Full/Empty, Yin/Yang &mdash; the master diagnostic framework</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 31</span> &mdash; Qi-Blood-Body Fluid Pattern Identification &middot; Type full notes (12 pp)<br><span class="cp">Schrier assigns both Ch. 30 &amp; 31 together Week 1 &mdash; conceptually paired</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 26</span> &mdash; Diagnosis by Hearing &amp; Smelling &middot; Type full notes (3 pp &mdash; very short)<br><span class="cp">Week 9 chapter &mdash; only 3 pages, done now = zero pressure later</span></span></li>
     </ul></div>
-    <div class="note-box">Pulse/Tongue Journal #1 due Week 2 (Jul 17). Begin recording your own pulse and tongue daily from today.</div>
+    <div class="note-box">No companion books today &mdash; Ch. 30, 31, 26 are standalone. Total 31 pages but Ch. 26 is 3 pp and Ch. 31 is 12 pp. Stop by 1PM for dance. Pulse/Tongue Journal &mdash; begin recording daily from today.</div>
   </div>
 </div>
 
+<!-- DAY 2 -->
 <div class="day" id="day2">
-  <div class="day-header" onclick="toggleDay('day2')"><span class="day-num">Day 2</span><span class="day-date">Sat Jun 27</span><span class="day-label">Dance 3PM &middot; EAM310 &mdash; FCM Ch. 26 evening after dance</span><div class="day-tags"><span class="tag tag-block">Dance 3PM</span><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day2">&#8250;</span></div>
+  <div class="day-header" onclick="toggleDay('day2')">
+    <span class="day-num">Day 2</span><span class="day-date">Sun Jun 28</span>
+    <span class="day-label">FCM Ch. 25 + Hammer Ch. 4&ndash;11 (full day)</span>
+    <div class="day-tags"><span class="tag tag-eam">EAM310</span></div>
+    <span class="chevron" id="chev-day2">&#8250;</span>
+  </div>
   <div class="day-body" id="body-day2">
-    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
-      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Dance &mdash; Ruxandra 3:00 PM &middot; Notes until 1PM max</span></li>
-    </ul></div>
-    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 9</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 26</span> &mdash; Diagnosis by Hearing &amp; Smelling &middot; Type full notes<br><span class="cp">Shorter chapter &mdash; 2&ndash;3 hrs max. Done now = zero pressure in Week 9.</span></span></li>
-    </ul></div>
-    <div class="note-box">Ch. 26 is short (~10&ndash;15 pages, ~2 hrs). Do it after dance in the evening. Birthday next Friday &mdash; everything on track.</div>
-  </div>
-</div>
-
-<div class="day" id="day3">
-  <div class="day-header" onclick="toggleDay('day3')"><span class="day-num">Day 3</span><span class="day-date">Sun Jun 28</span><span class="day-label">FCM Ch. 31 (Qi-Blood-Body Fluids) + CAM Ch. 13 + Maciocia Ch. 2&ndash;3</span><div class="day-tags"><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day3">&#8250;</span></div>
-  <div class="day-body" id="body-day3">
-    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 1&ndash;2</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 31</span> &mdash; Qi-Blood-Body Fluid Pattern Identification &middot; Type full notes</span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM Ch. 13</span> &mdash; Tongue &amp; Pulse Examination &middot; Type full notes<br><span class="cp">Schrier's running reference Weeks 1&ndash;4</span></span></li>
-    </ul></div>
-    <div class="task-section"><span class="task-section-label label-mac">Maciocia Tongue &mdash; companion to FCM Ch. 31</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 2</span> &mdash; Tongue Examination: Overview &middot; Cross-reference<br><span class="cp">Western anatomy, examination method, normal tongue &mdash; grounds FCM Ch. 31 clinically</span></span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 3</span> &mdash; Tongue Signs: Internal Organs &middot; Cross-reference<br><span class="cp">Tongue zone-to-organ mapping &mdash; essential visual framework alongside FCM Ch. 31</span></span></li>
-    </ul></div>
-    <div class="note-box">Full day &mdash; no commitments. Type FCM Ch. 31 first, then CAM Ch. 13, then cross-reference Maciocia.</div>
-  </div>
-</div>
-
-<div class="day" id="day4">
-  <div class="day-header" onclick="toggleDay('day4')"><span class="day-num">Day 4</span><span class="day-date">Mon Jun 29</span><span class="day-label">Korean 9AM &middot; FCM Ch. 25 + Hammer Ch. 6&ndash;11</span><div class="day-tags"><span class="tag tag-block">Korean 9AM</span><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day4">&#8250;</span></div>
-  <div class="day-body" id="body-day4">
-    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
-      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Korean &mdash; Soohyeon 9:00 AM (iTalki) &middot; Resume after lesson</span></li>
-    </ul></div>
     <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 3</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 25</span> &mdash; Diagnosis by Palpation (28 Pulse Qualities) &middot; Type full notes</span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 25</span> &mdash; Diagnosis by Palpation (28 Pulse Qualities) &middot; Type full notes (23 pp)</span></li>
     </ul></div>
-    <div class="task-section"><span class="task-section-label label-hammer">Hammer Ch. 6&ndash;11 &mdash; companion to FCM Ch. 25</span><ul class="task-list">
+    <div class="task-section"><span class="task-section-label label-hammer">Hammer Ch. 4&ndash;11 &mdash; companion to FCM Ch. 25 (pulse diagnosis)</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 4</span> &mdash; Taking the Pulse: Methodology &middot; Cross-reference<br><span class="cp">Depth, level, qualities, procedure &mdash; deepens FCM pulse positioning</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 5</span> &mdash; Classification &amp; Nomenclature of Pulse Qualities &middot; Cross-reference<br><span class="cp">Normal pulse + classification table &mdash; maps to FCM pulse quality overview</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 6</span> &mdash; Rhythm &amp; Stability &middot; Cross-reference<br><span class="cp">Maps to FCM hurried, knotted, intermittent pulses</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 7</span> &mdash; Rate &middot; Cross-reference<br><span class="cp">Maps to FCM rapid and slow pulses</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 8</span> &mdash; Volume &middot; Cross-reference<br><span class="cp">Maps to FCM full, empty, flooding pulses</span></span></li>
@@ -197,15 +184,24 @@ if('serviceWorker' in navigator){
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 10</span> &mdash; Size: Width &amp; Length &middot; Cross-reference<br><span class="cp">Maps to FCM thin, long, short pulses</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 11</span> &mdash; Shape &middot; Cross-reference<br><span class="cp">Maps to FCM slippery, wiry, tight pulses</span></span></li>
     </ul></div>
-    <div class="note-box">Type FCM Ch. 25 fully first, then cross-reference Hammer chapter by chapter. Full day available.</div>
+    <div class="note-box">Type FCM Ch. 25 fully first, then cross-reference Hammer chapter by chapter. Full day &mdash; no commitments.</div>
   </div>
 </div>
 
-<div class="day" id="day5">
-  <div class="day-header" onclick="toggleDay('day5')"><span class="day-num">Day 5</span><span class="day-date">Tue Jun 30</span><span class="day-label">AC300 &mdash; MOA framework + LU, LI, ST, SP channels</span><div class="day-tags"><span class="tag tag-ac">AC300</span></div><span class="chevron" id="chev-day5">&#8250;</span></div>
-  <div class="day-body" id="body-day5">
+<!-- DAY 3 -->
+<div class="day" id="day3">
+  <div class="day-header" onclick="toggleDay('day3')">
+    <span class="day-num">Day 3</span><span class="day-date">Mon Jun 29</span>
+    <span class="day-label">Korean 9AM &middot; AC300 &mdash; MOA framework + LU, LI, ST, SP</span>
+    <div class="day-tags"><span class="tag tag-block">Korean 9AM</span><span class="tag tag-ac">AC300</span></div>
+    <span class="chevron" id="chev-day3">&#8250;</span>
+  </div>
+  <div class="day-body" id="body-day3">
+    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
+      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Korean &mdash; Soohyeon 9:00 AM (iTalki) &middot; Resume after lesson</span></li>
+    </ul></div>
     <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 1</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 11&ndash;16</span> &mdash; Channel Theory Overview &middot; Type full notes<br><span class="cp">CAM p. 1&ndash;68 = review from EAM302/303 &mdash; pull your old notes instead of retyping</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 11&ndash;16</span> &mdash; Channel Theory Overview &middot; Type full notes<br><span class="cp">CAM p. 1&ndash;68 = review from EAM302/303 &mdash; pull old notes, do not retype</span></span></li>
     </ul></div>
     <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 2</span><ul class="task-list">
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 66&ndash;68</span> + <span class="cr">MOA p. 73&ndash;75</span> &mdash; Lung Channel &middot; Type notes + draw<br><span class="cp">After: pull Lung card &middot; active recall</span></span></li>
@@ -215,29 +211,44 @@ if('serviceWorker' in navigator){
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 68&ndash;71</span> + <span class="cr">MOA p. 125&ndash;129</span> &mdash; Stomach Channel &middot; Type notes + draw<br><span class="cp">After: pull Stomach card &middot; active recall</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 177&ndash;181</span> &mdash; Spleen Channel &middot; Type notes + draw<br><span class="cp">After: pull Spleen card &middot; active recall</span></span></li>
     </ul></div>
+    <div class="note-box">Korean 9AM then straight into AC300 after lesson. Full afternoon available.</div>
   </div>
 </div>
 
-<div class="day" id="day6">
-  <div class="day-header" onclick="toggleDay('day6')"><span class="day-num">Day 6</span><span class="day-date">Wed Jul 1</span><span class="day-label">FCM Ch. 23 + Maciocia Tongue Ch. 4&ndash;8</span><div class="day-tags"><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day6">&#8250;</span></div>
-  <div class="day-body" id="body-day6">
+<!-- DAY 4 -->
+<div class="day" id="day4">
+  <div class="day-header" onclick="toggleDay('day4')">
+    <span class="day-num">Day 4</span><span class="day-date">Tue Jun 30</span>
+    <span class="day-label">FCM Ch. 23 + Maciocia Tongue Ch. 2&ndash;8 (full day)</span>
+    <div class="day-tags"><span class="tag tag-eam">EAM310</span></div>
+    <span class="chevron" id="chev-day4">&#8250;</span>
+  </div>
+  <div class="day-body" id="body-day4">
     <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 4</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 23</span> &mdash; Diagnosis by Observation (Tongue) &middot; Type full notes</span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 23</span> &mdash; Diagnosis by Observation (Tongue) &middot; Type full notes (32 pp)</span></li>
     </ul></div>
-    <div class="task-section"><span class="task-section-label label-mac">Maciocia Tongue &mdash; companion to FCM Ch. 23</span><ul class="task-list">
+    <div class="task-section"><span class="task-section-label label-mac">Maciocia Tongue Ch. 2&ndash;8 &mdash; companion to FCM Ch. 23 (observation/tongue)</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 2</span> &mdash; Tongue Examination: Overview &middot; Cross-reference<br><span class="cp">Western anatomy, examination method, normal tongue &mdash; grounds FCM Ch. 23 clinically</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 3</span> &mdash; Tongue Signs: Internal Organs &middot; Cross-reference<br><span class="cp">Tongue zone-to-organ mapping &mdash; essential visual framework</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 4</span> &mdash; Eight Principles in Tongue Diagnosis &middot; Cross-reference<br><span class="cp">Exterior/interior, cold/heat, deficiency/excess &mdash; maps to FCM Ch. 23 pattern differentiation</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 5</span> &mdash; Tongue Spirit &amp; Body Color &middot; Cross-reference<br><span class="cp">Full color taxonomy: pale, red, dark red, purple, blue</span></span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 6</span> &mdash; Tongue Body Shape &middot; Cross-reference<br><span class="cp">Thin, swollen, stiff, flaccid, cracked, tooth-marked &mdash; detailed shape pathology for Journal</span></span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 7</span> &mdash; Tongue Coating &middot; Cross-reference<br><span class="cp">Full coating taxonomy (white, yellow, gray, black) + Eight Principles &mdash; most clinically dense</span></span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 8</span> &mdash; Tongue Diagnosis in the Clinic &middot; Cross-reference<br><span class="cp">Integration of tongue + pulse, prognosis, herbal therapy &mdash; ties everything together</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 6</span> &mdash; Tongue Body Shape &middot; Cross-reference<br><span class="cp">Thin, swollen, stiff, flaccid, cracked, tooth-marked</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 7</span> &mdash; Tongue Coating &middot; Cross-reference<br><span class="cp">Full coating taxonomy (white, yellow, gray, black) + Eight Principles</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Maciocia Tongue Ch. 8</span> &mdash; Tongue Diagnosis in the Clinic &middot; Cross-reference<br><span class="cp">Integration of tongue + pulse, prognosis, herbal therapy</span></span></li>
     </ul></div>
-    <div class="note-box">Type FCM Ch. 23 fully first. Then cross-reference Maciocia Ch. 4&ndash;8 section by section as you review. Heaviest companion day.</div>
+    <div class="note-box">Heaviest companion day. Type FCM Ch. 23 fully first, then cross-reference Maciocia Ch. 2&ndash;8 in order. Full day &mdash; no commitments.</div>
   </div>
 </div>
 
-<div class="day" id="day7">
-  <div class="day-header" onclick="toggleDay('day7')"><span class="day-num">Day 7</span><span class="day-date">Thu Jul 2</span><span class="day-label">AC300 &mdash; HT, SI, BL, KI channels</span><div class="day-tags"><span class="tag tag-ac">AC300</span></div><span class="chevron" id="chev-day7">&#8250;</span></div>
-  <div class="day-body" id="body-day7">
+<!-- DAY 5 -->
+<div class="day" id="day5">
+  <div class="day-header" onclick="toggleDay('day5')">
+    <span class="day-num">Day 5</span><span class="day-date">Wed Jul 1</span>
+    <span class="day-label">AC300 &mdash; HT, SI, BL, KI channels</span>
+    <div class="day-tags"><span class="tag tag-ac">AC300</span></div>
+    <span class="chevron" id="chev-day5">&#8250;</span>
+  </div>
+  <div class="day-body" id="body-day5">
     <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 4</span><ul class="task-list">
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 69&ndash;74</span> + <span class="cr">MOA p. 209&ndash;212</span> &mdash; Heart Channel &middot; Type notes + draw<br><span class="cp">After: pull Heart card &middot; active recall</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 227&ndash;230</span> &mdash; Small Intestine Channel &middot; Type notes + draw<br><span class="cp">After: pull SI card &middot; active recall</span></span></li>
@@ -246,21 +257,51 @@ if('serviceWorker' in navigator){
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 73&ndash;77</span> + <span class="cr">MOA p. 251&ndash;256</span> &mdash; Bladder Channel &middot; Type notes + draw<br><span class="cp">After: pull Bladder card &middot; active recall</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 331&ndash;335</span> &mdash; Kidney Channel &middot; Type notes + draw<br><span class="cp">After: pull Kidney card &middot; active recall</span></span></li>
     </ul></div>
+    <div class="note-box">Full day &mdash; no commitments. Review and redraw all 4 channels after completing.</div>
   </div>
 </div>
 
+<!-- DAY 6 -->
+<div class="day" id="day6">
+  <div class="day-header" onclick="toggleDay('day6')">
+    <span class="day-num">Day 6</span><span class="day-date">Thu Jul 2</span>
+    <span class="day-label">FCM Ch. 24 + CAM Ch. 13 &mdash; birthday tomorrow</span>
+    <div class="day-tags"><span class="tag tag-eam">EAM310</span></div>
+    <span class="chevron" id="chev-day6">&#8250;</span>
+  </div>
+  <div class="day-body" id="body-day6">
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 7&ndash;8</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 24</span> &mdash; Diagnosis by Interrogation (Ten Questions) &middot; Type full notes (37 pp)<br><span class="cp">Longest FCM chapter in this plan &mdash; start early</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 1 running reference</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM Ch. 13</span> &mdash; Tongue &amp; Pulse Examination &middot; Type full notes<br><span class="cp">Schrier assigns as running reference Weeks 1&ndash;4</span></span></li>
+    </ul></div>
+    <div class="note-box">Start early &mdash; Ch. 24 is the longest chapter. Birthday tomorrow &mdash; finish everything today and enjoy the night.</div>
+  </div>
+</div>
+
+<!-- DAY 7 BIRTHDAY -->
+<div class="day" id="day7">
+  <div class="day-header bday" onclick="toggleDay('day7')">
+    <span class="day-num">Day 7</span><span class="day-date">Fri Jul 3 &#127874;</span>
+    <span class="day-label">BIRTHDAY &mdash; fully off &middot; no studying</span>
+    <div class="day-tags"><span class="tag tag-bday">Birthday</span></div>
+    <span class="chevron" id="chev-day7">&#8250;</span>
+  </div>
+  <div class="day-body" id="body-day7">
+    <div class="bday-box">&#127874; Happy Birthday Jon. All FCM chapters typed. All 12 primary channels complete. Take the day fully off &mdash; you earned it.</div>
+  </div>
+</div>
+
+<!-- DAY 8 -->
 <div class="day" id="day8">
-  <div class="day-header bday" onclick="toggleDay('day8')"><span class="day-num">Day 8</span><span class="day-date">Fri Jul 3 &#127874;</span><span class="day-label">BIRTHDAY &mdash; fully off &middot; no studying</span><div class="day-tags"><span class="tag tag-bday">Birthday</span></div><span class="chevron" id="chev-day8">&#8250;</span></div>
-  <div class="day-body" id="body-day8">
-    <div class="bday-box">&#127874; Happy Birthday Jon. Everything is done. All EAM310 chapters typed. All 12 primary channels complete. Take the day fully off &mdash; you earned it.</div>
+  <div class="day-header" onclick="toggleDay('day8')">
+    <span class="day-num">Day 8</span><span class="day-date">Sat Jul 4</span>
+    <span class="day-label">AC300 &mdash; PC, TE, GB, LR until 1PM &middot; Dance 3PM &middot; July 4th</span>
+    <div class="day-tags"><span class="tag tag-ac">AC300</span><span class="tag tag-block">Dance 3PM</span><span class="tag tag-rest">Holiday</span></div>
+    <span class="chevron" id="chev-day8">&#8250;</span>
   </div>
-</div>
-
-
-
-<div class="day" id="day9">
-  <div class="day-header" onclick="toggleDay('day9')"><span class="day-num">Day 9</span><span class="day-date">Sat Jul 4</span><span class="day-label">AC300 &mdash; PC, TE, GB, LR until 1PM &middot; Dance 3PM &middot; July 4th</span><div class="day-tags"><span class="tag tag-ac">AC300</span><span class="tag tag-block">Dance 3PM</span><span class="tag tag-rest">Holiday</span></div><span class="chevron" id="chev-day9">&#8250;</span></div>
-  <div class="day-body" id="body-day9">
+  <div class="day-body" id="body-day8">
     <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
       <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Dance &mdash; Ruxandra 3:00 PM &middot; Stop by 1:00 PM</span></li>
     </ul></div>
@@ -270,16 +311,19 @@ if('serviceWorker' in navigator){
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 417&ndash;421</span> &mdash; Gall Bladder Channel &middot; Type notes + draw<br><span class="cp">After: pull GB card &middot; active recall</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 469&ndash;472</span> &mdash; Liver Channel &middot; Type notes + draw<br><span class="cp">After: pull Liver card &middot; active recall &mdash; all 12 primary channels complete</span></span></li>
     </ul></div>
-    <div class="note-box">Stop by 1PM for dance. All 12 channels done on this day.</div>
+    <div class="note-box">Stop by 1PM for dance. All 12 channels complete on this day. July 4th celebrations after dance.</div>
   </div>
 </div>
 
-<div class="day" id="day10">
-  <div class="day-header" onclick="toggleDay('day10')"><span class="day-num">Day 10</span><span class="day-date">Sun Jul 5</span><span class="day-label">FCM Ch. 24 + WM360 preview + buffer &middot; quarter starts tomorrow</span><div class="day-tags"><span class="tag tag-ac">AC300</span><span class="tag tag-eam">EAM310</span></div><span class="chevron" id="chev-day10">&#8250;</span></div>
-  <div class="day-body" id="body-day10">
-    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 7&ndash;8</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 24</span> &mdash; Diagnosis by Interrogation (Ten Questions) &middot; Type full notes</span></li>
-    </ul></div>
+<!-- DAY 9 -->
+<div class="day" id="day9">
+  <div class="day-header" onclick="toggleDay('day9')">
+    <span class="day-num">Day 9</span><span class="day-date">Sun Jul 5</span>
+    <span class="day-label">WM360 preview + buffer &middot; quarter starts tomorrow</span>
+    <div class="day-tags"><span class="tag tag-wm">WM360</span><span class="tag tag-ac">AC300</span></div>
+    <span class="chevron" id="chev-day9">&#8250;</span>
+  </div>
+  <div class="day-body" id="body-day9">
     <div class="task-section"><span class="task-section-label label-wm">WM360 &mdash; light preview</span><ul class="task-list">
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text">Skim Marieb table of contents &middot; Note which A&amp;P III topics carry from WM340/WM350<br><span class="cp">Reactive strategy &mdash; full study guides built during quarter from lecture slides/transcripts</span></span></li>
     </ul></div>
@@ -289,7 +333,7 @@ if('serviceWorker' in navigator){
     <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; buffer</span><ul class="task-list">
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text">Skim CAM Ch. 2&ndash;4 &amp; 11 if time &mdash; Schrier designated review chapters only</span></li>
     </ul></div>
-    <div class="note-box">Quarter starts Mon Jul 6. All EAM310 chapters typed. All 12 primary channels done. Class = reinforcement.</div>
+    <div class="note-box">Quarter starts Mon Jul 6. All FCM chapters typed. All 12 primary channels done. Class = reinforcement.</div>
   </div>
 </div>
 
@@ -309,7 +353,7 @@ if('serviceWorker' in navigator){
 <!-- TAB 2 SCHEDULE -->
 <div class="tab-panel" id="tab-schedule">
 <h1>Daily Schedule &mdash; Pre-Study Break</h1>
-<p class="subtitle">Fri Jun 26 &ndash; Sun Jul 5 &middot; Korean &amp; Dance hard-blocked &middot; Jul 3 Birthday = fully off</p>
+<p class="subtitle">Sat Jun 27 &ndash; Sun Jul 5 &middot; Korean &amp; Dance hard-blocked &middot; Jul 3 Birthday = fully off</p>
 <div class="sched-legend">
   <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--eam)"></div>EAM310</div>
   <div class="sched-legend-item"><div class="sched-legend-dot" style="background:var(--ac)"></div>AC300</div>
@@ -324,16 +368,15 @@ if('serviceWorker' in navigator){
 <div class="sched-nav">
   <button class="sched-nav-btn" onclick="prevDay()">&#9664; Prev</button>
   <select class="sched-day-select" id="daySelect" onchange="renderDay(this.value)">
-    <option value="0">Fri Jun 26 &mdash; Day 1</option>
-    <option value="1">Sat Jun 27 &mdash; Day 2 (Dance 3PM / Ch.26 evening)</option>
-    <option value="2">Sun Jun 28 &mdash; Day 3</option>
-    <option value="3">Mon Jun 29 &mdash; Day 4 (Korean 9AM)</option>
-    <option value="4">Tue Jun 30 &mdash; Day 5</option>
-    <option value="5">Wed Jul 1 &mdash; Day 6</option>
-    <option value="6">Thu Jul 2 &mdash; Day 7</option>
-    <option value="7">Fri Jul 3 &mdash; Day 8 &#127874; BIRTHDAY OFF</option>
-    <option value="8">Sat Jul 4 &mdash; Day 9 (Dance + Holiday)</option>
-    <option value="9">Sun Jul 5 &mdash; Day 10 (Buffer)</option>
+    <option value="0">Sat Jun 27 &mdash; Day 1 (Ch.30+31+26 / Dance 3PM)</option>
+    <option value="1">Sun Jun 28 &mdash; Day 2 (Ch.25 + Hammer Ch.4-11)</option>
+    <option value="2">Mon Jun 29 &mdash; Day 3 (Korean / AC300 LU-SP)</option>
+    <option value="3">Tue Jun 30 &mdash; Day 4 (Ch.23 + Maciocia Ch.2-8)</option>
+    <option value="4">Wed Jul 1 &mdash; Day 5 (AC300 HT-KI)</option>
+    <option value="5">Thu Jul 2 &mdash; Day 6 (Ch.24 + CAM Ch.13)</option>
+    <option value="6">Fri Jul 3 &mdash; Day 7 &#127874; BIRTHDAY OFF</option>
+    <option value="7">Sat Jul 4 &mdash; Day 8 (AC300 PC-LR / Dance)</option>
+    <option value="8">Sun Jul 5 &mdash; Day 9 (Buffer)</option>
   </select>
   <button class="sched-nav-btn" onclick="nextDay()">Next &#9654;</button>
 </div>
@@ -345,7 +388,7 @@ if('serviceWorker' in navigator){
 </div>
 
 <script>
-const SK='summer2026_v5';
+const SK='summer2026_v6';
 function load(){try{return JSON.parse(localStorage.getItem(SK))||{};}catch(e){return{};}}
 function save(s){localStorage.setItem(SK,JSON.stringify(s));}
 function switchTab(t){
@@ -368,35 +411,167 @@ function collapseAll(){document.querySelectorAll('.day-body').forEach(b=>b.class
 function clearChecklist(){if(!confirm('Clear all checkmarks?'))return;document.querySelectorAll('.task-list li[onclick]').forEach(li=>li.classList.remove('done'));const s=load();Object.keys(s).filter(k=>k.startsWith('chk_')).forEach(k=>delete s[k]);save(s);updateProgress();}
 
 const DAYS=[
-  {label:'Fri Jun 26',desc:'Day 1 - FCM Ch. 30 + Hammer Ch. 4-5',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 30 - Eight Principles Pattern ID (type notes)'},{h:8,t:'eam',l:'FCM Ch. 30 - continued'},{h:9,t:'eam',l:'FCM Ch. 30 - continued'},{h:10,t:'hammer',l:'Hammer Ch. 4 - Taking the Pulse: Methodology (cross-ref)'},{h:11,t:'hammer',l:'Hammer Ch. 5 - Classification & Nomenclature (cross-ref)'},{h:12,t:'rest',l:'Lunch / break'},{h:13,t:'eam',l:'FCM Ch. 30 - continued (type notes)'},{h:14,t:'journal',l:'Hammer Ch. 4 - Taking the Pulse: Methodology (cross-ref)'},{h:15,t:'hammer',l:'Hammer Ch. 5 - Classification & Nomenclature (cross-ref)'},{h:16,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  {label:'Sat Jun 27',desc:'Day 1 - FCM Ch.30+31+26 / Dance 3PM',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'eam',l:'FCM Ch. 30 - Eight Principles Pattern ID (type notes)'},
+    {h:8,t:'eam',l:'FCM Ch. 30 - continued'},
+    {h:9,t:'eam',l:'FCM Ch. 31 - Qi-Blood-Body Fluid Pattern ID (type notes)'},
+    {h:10,t:'eam',l:'FCM Ch. 31 - continued + FCM Ch. 26 - Hearing & Smelling (3 pp)'},
+    {h:11,t:'rest',l:'Wrap up / review - stop by 1PM'},
+    {h:12,t:'rest',l:'Lunch / rest before dance'},
+    {h:13,t:'rest',l:'Prepare for dance'},
+    {h:14,t:'rest',l:'Travel / prep'},
+    {h:15,t:'block',l:'DANCE - Ruxandra (hard block)'},
+    {h:16,t:'block',l:'DANCE - continued'},
+    {h:17,t:'rest',l:'Post-dance rest'},
+    {h:18,t:'rest',l:'Dinner'},
+    {h:19,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Sat Jun 27',desc:'Day 2 - Dance 3PM / FCM Ch. 26 evening after dance',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'free',l:'Free morning'},{h:8,t:'free',l:'Free'},{h:9,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:10,t:'free',l:'Free'},{h:11,t:'rest',l:'Lunch / rest before dance'},{h:12,t:'rest',l:'Prepare for dance'},{h:13,t:'rest',l:'Travel / prep'},{h:14,t:'rest',l:'Travel / prep'},{h:15,t:'block',l:'DANCE - Ruxandra (hard block)'},{h:16,t:'block',l:'DANCE - continued'},{h:17,t:'rest',l:'Post-dance rest / dinner'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'eam',l:'FCM Ch. 26 - Diagnosis by Hearing & Smelling (type notes)'},{h:20,t:'eam',l:'FCM Ch. 26 - continued + finish (short chapter ~2hrs)'},{h:21,t:'free',l:'Done - rest'}
+  {label:'Sun Jun 28',desc:'Day 2 - FCM Ch.25 + Hammer Ch.4-11 (full day)',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'eam',l:'FCM Ch. 25 - Diagnosis by Palpation / 28 Pulse Qualities (type notes)'},
+    {h:8,t:'eam',l:'FCM Ch. 25 - continued'},
+    {h:9,t:'eam',l:'FCM Ch. 25 - continued'},
+    {h:10,t:'hammer',l:'Hammer Ch. 4 - Taking the Pulse: Methodology (cross-ref)'},
+    {h:11,t:'hammer',l:'Hammer Ch. 5 - Classification & Nomenclature (cross-ref)'},
+    {h:12,t:'rest',l:'Lunch / break'},
+    {h:13,t:'hammer',l:'Hammer Ch. 6 Rhythm + Ch. 7 Rate (cross-ref)'},
+    {h:14,t:'hammer',l:'Hammer Ch. 8 Volume + Ch. 9 Depth (cross-ref)'},
+    {h:15,t:'hammer',l:'Hammer Ch. 10 Size + Ch. 11 Shape (cross-ref)'},
+    {h:16,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:17,t:'free',l:'Free'},
+    {h:18,t:'rest',l:'Dinner'},
+    {h:19,t:'free',l:'Free'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Sun Jun 28',desc:'Day 3 - FCM Ch. 31 + CAM Ch. 13 + Maciocia Tongue Ch. 2-3 (full day)',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 31 - Qi-Blood-Body Fluid Pattern ID (type notes)'},{h:8,t:'eam',l:'FCM Ch. 31 - continued'},{h:9,t:'mac',l:'Maciocia Tongue Ch. 2 - Examination Overview (cross-ref)'},{h:10,t:'mac',l:'Maciocia Tongue Ch. 3 - Tongue Signs: Internal Organs (cross-ref)'},{h:11,t:'eam',l:'CAM Ch. 13 - Tongue & Pulse Examination (type notes)'},{h:12,t:'eam',l:'CAM Ch. 13 - continued'},{h:13,t:'rest',l:'Lunch / break'},{h:14,t:'eam',l:'CAM Ch. 13 - finish + review all notes'},{h:15,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:16,t:'free',l:'Free'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  {label:'Mon Jun 29',desc:'Day 3 - Korean 9AM / AC300 LU, LI, ST, SP',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'rest',l:'Light prep before Korean'},
+    {h:8,t:'rest',l:'Prepare for Korean lesson'},
+    {h:9,t:'block',l:'KOREAN - Soohyeon / iTalki (hard block)'},
+    {h:10,t:'block',l:'KOREAN - continued'},
+    {h:11,t:'rest',l:'Break after lesson / lunch'},
+    {h:12,t:'ac',l:'MOA p. 11-16 Channel Theory + CAM p. 66-68 + MOA p. 73-75 Lung (type + draw)'},
+    {h:13,t:'ac',l:'MOA p. 95-99 - Large Intestine channel (type + draw) / Deadman card recall'},
+    {h:14,t:'ac',l:'CAM p. 68-71 + MOA p. 125-129 - Stomach channel (type + draw)'},
+    {h:15,t:'ac',l:'Stomach - continued / Deadman card recall'},
+    {h:16,t:'ac',l:'MOA p. 177-181 - Spleen channel (type + draw) / Deadman card recall'},
+    {h:17,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:18,t:'rest',l:'Dinner'},
+    {h:19,t:'free',l:'Free'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Mon Jun 29',desc:'Day 4 - Korean 9AM / FCM Ch. 25 + Hammer Ch. 6-11',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'rest',l:'Light prep before Korean'},{h:8,t:'rest',l:'Prepare for Korean lesson'},{h:9,t:'block',l:'KOREAN - Soohyeon / iTalki (hard block)'},{h:10,t:'block',l:'KOREAN - continued'},{h:11,t:'rest',l:'Break after lesson / lunch'},{h:12,t:'eam',l:'FCM Ch. 25 - Diagnosis by Palpation / 28 Pulse Qualities (type notes)'},{h:13,t:'eam',l:'FCM Ch. 25 - continued'},{h:14,t:'hammer',l:'Hammer Ch. 6 Rhythm + Ch. 7 Rate (cross-ref)'},{h:15,t:'hammer',l:'Hammer Ch. 8 Volume + Ch. 9 Depth (cross-ref)'},{h:16,t:'hammer',l:'Hammer Ch. 10 Size + Ch. 11 Shape (cross-ref)'},{h:17,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  {label:'Tue Jun 30',desc:'Day 4 - FCM Ch.23 + Maciocia Tongue Ch.2-8 (full day)',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'eam',l:'FCM Ch. 23 - Diagnosis by Observation / Tongue (type notes)'},
+    {h:8,t:'eam',l:'FCM Ch. 23 - continued'},
+    {h:9,t:'eam',l:'FCM Ch. 23 - continued'},
+    {h:10,t:'eam',l:'FCM Ch. 23 - finish'},
+    {h:11,t:'rest',l:'Lunch / break'},
+    {h:12,t:'mac',l:'Maciocia Tongue Ch. 2 Examination Overview + Ch. 3 Tongue Signs (cross-ref)'},
+    {h:13,t:'mac',l:'Maciocia Tongue Ch. 4 Eight Principles + Ch. 5 Body Color (cross-ref)'},
+    {h:14,t:'mac',l:'Maciocia Tongue Ch. 6 Body Shape + Ch. 7 Coating (cross-ref)'},
+    {h:15,t:'mac',l:'Maciocia Tongue Ch. 8 - Tongue Diagnosis in the Clinic (cross-ref)'},
+    {h:16,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:17,t:'free',l:'Free'},
+    {h:18,t:'rest',l:'Dinner'},
+    {h:19,t:'free',l:'Free'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Tue Jun 30',desc:'Day 5 - AC300 MOA framework + LU, LI, ST, SP channels',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'ac',l:'MOA p. 11-16 - Channel Theory Overview (type notes)'},{h:8,t:'ac',l:'CAM p. 66-68 + MOA p. 73-75 - Lung channel (type + draw)'},{h:9,t:'ac',l:'Lung - continued / Deadman card recall'},{h:10,t:'ac',l:'MOA p. 95-99 - Large Intestine channel (type + draw) / Deadman card recall'},{h:11,t:'rest',l:'Break / lunch'},{h:12,t:'ac',l:'CAM p. 68-71 + MOA p. 125-129 - Stomach channel (type + draw)'},{h:13,t:'ac',l:'Stomach - continued / Deadman card recall'},{h:14,t:'ac',l:'MOA p. 177-181 - Spleen channel (type + draw) / Deadman card recall'},{h:15,t:'ac',l:'Review & redraw all 4 channels'},{h:16,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:17,t:'rest',l:'Break / wind down'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  {label:'Wed Jul 1',desc:'Day 5 - AC300 HT, SI, BL, KI channels',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'ac',l:'CAM p. 69-74 + MOA p. 209-212 - Heart channel (type + draw) / Deadman recall'},
+    {h:8,t:'ac',l:'MOA p. 227-230 - Small Intestine channel (type + draw) / Deadman recall'},
+    {h:9,t:'ac',l:'CAM p. 73-77 + MOA p. 251-256 - Bladder channel (type + draw)'},
+    {h:10,t:'ac',l:'Bladder - continued / Deadman card recall'},
+    {h:11,t:'rest',l:'Lunch / break'},
+    {h:12,t:'ac',l:'MOA p. 331-335 - Kidney channel (type + draw) / Deadman card recall'},
+    {h:13,t:'ac',l:'Review & redraw all 4 channels'},
+    {h:14,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:15,t:'free',l:'Free'},
+    {h:16,t:'free',l:'Free'},
+    {h:17,t:'free',l:'Free'},
+    {h:18,t:'rest',l:'Dinner'},
+    {h:19,t:'free',l:'Free'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Wed Jul 1',desc:'Day 6 - FCM Ch. 23 + Maciocia Tongue Ch. 4-8',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 23 - Diagnosis by Observation / Tongue (type notes)'},{h:8,t:'eam',l:'FCM Ch. 23 - continued'},{h:9,t:'eam',l:'FCM Ch. 23 - continued'},{h:10,t:'eam',l:'FCM Ch. 23 - finish'},{h:11,t:'rest',l:'Break / lunch'},{h:12,t:'mac',l:'Maciocia Tongue Ch. 4 Eight Principles + Ch. 5 Body Color (cross-ref)'},{h:13,t:'mac',l:'Maciocia Tongue Ch. 6 Body Shape + Ch. 7 Coating (cross-ref)'},{h:14,t:'mac',l:'Maciocia Tongue Ch. 8 - Tongue Diagnosis in the Clinic (cross-ref)'},{h:15,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:16,t:'eam',l:'Review FCM Ch. 23 notes'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  {label:'Thu Jul 2',desc:'Day 6 - FCM Ch.24 + CAM Ch.13 / birthday tomorrow',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'eam',l:'FCM Ch. 24 - Diagnosis by Interrogation / Ten Questions (type notes)'},
+    {h:8,t:'eam',l:'FCM Ch. 24 - continued'},
+    {h:9,t:'eam',l:'FCM Ch. 24 - continued'},
+    {h:10,t:'eam',l:'FCM Ch. 24 - finish'},
+    {h:11,t:'rest',l:'Lunch / break'},
+    {h:12,t:'eam',l:'CAM Ch. 13 - Tongue & Pulse Examination (type notes)'},
+    {h:13,t:'eam',l:'CAM Ch. 13 - continued'},
+    {h:14,t:'eam',l:'CAM Ch. 13 - finish + review'},
+    {h:15,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:16,t:'free',l:'Free - birthday tomorrow'},
+    {h:17,t:'free',l:'Free'},
+    {h:18,t:'rest',l:'Dinner'},
+    {h:19,t:'free',l:'Free'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Thu Jul 2',desc:'Day 7 - AC300 HT, SI, BL, KI channels',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'ac',l:'CAM p. 69-74 + MOA p. 209-212 - Heart channel (type + draw) / Deadman card recall'},{h:8,t:'ac',l:'MOA p. 227-230 - Small Intestine channel (type + draw) / Deadman card recall'},{h:9,t:'ac',l:'CAM p. 73-77 + MOA p. 251-256 - Bladder channel (type + draw)'},{h:10,t:'ac',l:'Bladder - continued / Deadman card recall'},{h:11,t:'rest',l:'Break / lunch'},{h:12,t:'ac',l:'MOA p. 331-335 - Kidney channel (type + draw) / Deadman card recall'},{h:13,t:'ac',l:'Review & redraw all 4 channels'},{h:14,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:15,t:'free',l:'Free - birthday tomorrow'},{h:16,t:'free',l:'Free'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  {label:'Fri Jul 3 - BIRTHDAY',desc:'Day 7 - FULLY OFF',slots:[
+    {h:6,t:'bday',l:'Birthday - sleep in'},
+    {h:7,t:'bday',l:'Free'},
+    {h:8,t:'bday',l:'Free'},
+    {h:9,t:'bday',l:'Free'},
+    {h:10,t:'bday',l:'Free'},
+    {h:11,t:'bday',l:'Free'},
+    {h:12,t:'bday',l:'Free'},
+    {h:13,t:'bday',l:'Free'},
+    {h:14,t:'bday',l:'Free'},
+    {h:15,t:'bday',l:'Free'},
+    {h:16,t:'bday',l:'Free'},
+    {h:17,t:'bday',l:'Free'},
+    {h:18,t:'bday',l:'Free - Happy Birthday Jon'},
+    {h:19,t:'bday',l:'Free'},
+    {h:20,t:'bday',l:'Free'},
+    {h:21,t:'bday',l:'Free'}
   ]},
-  {label:'Fri Jul 3 - BIRTHDAY',desc:'Day 8 - FULLY OFF',slots:[
-    {h:6,t:'bday',l:'Birthday - sleep in'},{h:7,t:'bday',l:'Free'},{h:8,t:'bday',l:'Free'},{h:9,t:'bday',l:'Free'},{h:10,t:'bday',l:'Free'},{h:11,t:'bday',l:'Free'},{h:12,t:'bday',l:'Free'},{h:13,t:'bday',l:'Free'},{h:14,t:'bday',l:'Free'},{h:15,t:'bday',l:'Free'},{h:16,t:'bday',l:'Free'},{h:17,t:'bday',l:'Free'},{h:18,t:'bday',l:'Free - Happy Birthday Jon'},{h:19,t:'bday',l:'Free'},{h:20,t:'bday',l:'Free'},{h:21,t:'bday',l:'Free'}
+  {label:'Sat Jul 4',desc:'Day 8 - AC300 PC,TE,GB,LR morning / Dance 3PM / July 4th',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'ac',l:'CAM p. 77-82 + MOA p. 367-370 - Pericardium channel (type + draw)'},
+    {h:8,t:'ac',l:'MOA p. 387-390 - Triple Energizer channel (type + draw) / Deadman recall'},
+    {h:9,t:'ac',l:'MOA p. 417-421 - Gall Bladder channel (type + draw) / Deadman recall'},
+    {h:10,t:'ac',l:'MOA p. 469-472 - Liver channel (type + draw) / Deadman recall - 12 channels done'},
+    {h:11,t:'rest',l:'Wrap up - stop by 1PM'},
+    {h:12,t:'rest',l:'Lunch / rest before dance'},
+    {h:13,t:'rest',l:'Prepare for dance'},
+    {h:14,t:'rest',l:'Travel / prep'},
+    {h:15,t:'block',l:'DANCE - Ruxandra (hard block)'},
+    {h:16,t:'block',l:'DANCE - continued'},
+    {h:17,t:'rest',l:'Post-dance rest'},
+    {h:18,t:'rest',l:'Dinner / July 4th celebrations'},
+    {h:19,t:'free',l:'Free'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Sat Jul 4',desc:'Day 9 - AC300 PC,TE,GB,LR morning until 1PM / Dance 3PM / July 4th',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'ac',l:'CAM p. 77-82 + MOA p. 367-370 - Pericardium channel (type + draw)'},{h:8,t:'ac',l:'MOA p. 387-390 - Triple Energizer channel (type + draw) / Deadman card recall'},{h:9,t:'ac',l:'MOA p. 417-421 - Gall Bladder channel (type + draw) / Deadman card recall'},{h:10,t:'ac',l:'MOA p. 469-472 - Liver channel (type + draw) / Deadman card recall - 12 channels complete'},{h:11,t:'rest',l:'Wrap up - stop by 1PM'},{h:12,t:'rest',l:'Lunch / rest before dance'},{h:13,t:'rest',l:'Prepare for dance'},{h:14,t:'rest',l:'Travel / prep'},{h:15,t:'block',l:'DANCE - Ruxandra (hard block)'},{h:16,t:'block',l:'DANCE - continued'},{h:17,t:'rest',l:'Post-dance rest'},{h:18,t:'rest',l:'Dinner / July 4th celebrations'},{h:19,t:'free',l:'Free'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
-  ]},
-  {label:'Sun Jul 5',desc:'Day 10 - FCM Ch. 24 + WM360 preview + buffer / quarter starts tomorrow',slots:[
-    {h:6,t:'rest',l:'Wake / morning routine'},{h:7,t:'eam',l:'FCM Ch. 24 - Diagnosis by Interrogation / Ten Questions (type notes)'},{h:8,t:'eam',l:'FCM Ch. 24 - continued'},{h:9,t:'eam',l:'FCM Ch. 24 - finish'},{h:10,t:'wm',l:'WM360 - skim Marieb TOC / note A&P III topics from prior courses'},{h:11,t:'ac',l:'Catch-up / overflow - any incomplete channels / redraw as needed'},{h:12,t:'rest',l:'Lunch'},{h:13,t:'eam',l:'Skim CAM Ch. 2-4 & 11 - Schrier review chapters only'},{h:14,t:'journal',l:'Pulse/Tongue Journal - record observations'},{h:15,t:'rest',l:'Organize all notes / prep bag for Monday'},{h:16,t:'free',l:'Free'},{h:17,t:'free',l:'Free'},{h:18,t:'rest',l:'Dinner'},{h:19,t:'free',l:'Free - quarter starts tomorrow'},{h:20,t:'free',l:'Free'},{h:21,t:'free',l:'Free'}
+  {label:'Sun Jul 5',desc:'Day 9 - WM360 preview + buffer / quarter starts tomorrow',slots:[
+    {h:6,t:'rest',l:'Wake / morning routine'},
+    {h:7,t:'wm',l:'WM360 - skim Marieb TOC / note A&P III topics from prior courses'},
+    {h:8,t:'ac',l:'Catch-up / overflow - any incomplete channels / redraw as needed'},
+    {h:9,t:'eam',l:'Skim CAM Ch. 2-4 & 11 - Schrier review chapters only'},
+    {h:10,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:11,t:'rest',l:'Organize all notes / prep bag for Monday'},
+    {h:12,t:'rest',l:'Lunch'},
+    {h:13,t:'free',l:'Free afternoon'},
+    {h:14,t:'free',l:'Free'},
+    {h:15,t:'free',l:'Free'},
+    {h:16,t:'free',l:'Free'},
+    {h:17,t:'free',l:'Free'},
+    {h:18,t:'rest',l:'Dinner'},
+    {h:19,t:'free',l:'Free - quarter starts tomorrow'},
+    {h:20,t:'free',l:'Free'},
+    {h:21,t:'free',l:'Free'}
   ]}
 ];
 
@@ -427,8 +602,8 @@ window.addEventListener('DOMContentLoaded',()=>{
   const s=load();
   document.querySelectorAll('.task-list li[onclick]').forEach(li=>{if(s[getTaskId(li)])li.classList.add('done');});
   updateProgress();
-  const dm={'2026-06-26':'day1','2026-06-27':'day2','2026-06-28':'day3','2026-06-29':'day4','2026-06-30':'day5','2026-07-01':'day6','2026-07-02':'day7','2026-07-03':'day8','2026-07-04':'day9','2026-07-05':'day10'};
-  const sm={'2026-06-26':0,'2026-06-27':1,'2026-06-28':2,'2026-06-29':3,'2026-06-30':4,'2026-07-01':5,'2026-07-02':6,'2026-07-03':7,'2026-07-04':8,'2026-07-05':9};
+  const dm={'2026-06-27':'day1','2026-06-28':'day2','2026-06-29':'day3','2026-06-30':'day4','2026-07-01':'day5','2026-07-02':'day6','2026-07-03':'day7','2026-07-04':'day8','2026-07-05':'day9'};
+  const sm={'2026-06-27':0,'2026-06-28':1,'2026-06-29':2,'2026-06-30':3,'2026-07-01':4,'2026-07-02':5,'2026-07-03':6,'2026-07-04':7,'2026-07-05':8};
   const tk=new Date().toISOString().slice(0,10);
   if(dm[tk])toggleDay(dm[tk]);
   renderDay(sm[tk]!==undefined?sm[tk]:0);
