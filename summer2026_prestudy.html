@@ -166,12 +166,42 @@ if('serviceWorker' in navigator){
 <div class="day" id="day2">
   <div class="day-header" onclick="toggleDay('day2')">
     <span class="day-num">Day 2</span><span class="day-date">Sun Jun 28</span>
-    <span class="day-label">FCM Ch. 25 + Hammer Ch. 4&ndash;11 (full day)</span>
-    <div class="day-tags"><span class="tag tag-eam">EAM310</span></div>
+    <span class="day-label">AC300 &mdash; MOA framework + LU, LI, ST, SP &middot; Plans 2&ndash;6PM</span>
+    <div class="day-tags"><span class="tag tag-ac">AC300</span><span class="tag tag-block">Plans 2PM</span></div>
     <span class="chevron" id="chev-day2">&#8250;</span>
   </div>
   <div class="day-body" id="body-day2">
-    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 3</span><ul class="task-list">
+    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
+      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Dance lesson ~12&ndash;1PM &middot; Plans 2&ndash;6PM &middot; Stop studying by 11:30AM</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 1 (morning block 8&ndash;11:30AM)</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 11&ndash;16</span> &mdash; Channel Theory Overview &middot; Type full notes<br><span class="cp">CAM p. 1&ndash;68 = review from EAM302/303 &mdash; pull old notes, do not retype</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 2</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 66&ndash;68</span> + <span class="cr">MOA p. 73&ndash;75</span> &mdash; Lung Channel &middot; Type notes + draw<br><span class="cp">After: pull Lung card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 95&ndash;99</span> &mdash; Large Intestine Channel &middot; Type notes + draw<br><span class="cp">After: pull LI card &middot; active recall</span></span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 3 (if time before 11:30)</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 68&ndash;71</span> + <span class="cr">MOA p. 125&ndash;129</span> &mdash; Stomach Channel &middot; Type notes + draw<br><span class="cp">After: pull Stomach card &middot; active recall</span></span></li>
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 177&ndash;181</span> &mdash; Spleen Channel &middot; Type notes + draw<br><span class="cp">After: pull Spleen card &middot; active recall</span></span></li>
+    </ul></div>
+    <div class="note-box">Morning block only &mdash; hard stop 11:30AM. Dance lesson ~12&ndash;1PM, plans 2&ndash;6PM. LU + LI are the priority; ST + SP are bonus if time allows. Any incomplete channels carry to Day 3 buffer.</div>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="day" id="day3">
+  <div class="day-header" onclick="toggleDay('day3')">
+    <span class="day-num">Day 3</span><span class="day-date">Mon Jun 29</span>
+    <span class="day-label">Korean 9AM &middot; FCM Ch. 25 + Hammer Ch. 4&ndash;11 (afternoon)</span>
+    <div class="day-tags"><span class="tag tag-block">Korean 9AM</span><span class="tag tag-eam">EAM310</span></div>
+    <span class="chevron" id="chev-day3">&#8250;</span>
+  </div>
+  <div class="day-body" id="body-day3">
+    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
+      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Korean &mdash; Soohyeon 9:00 AM (iTalki) &middot; Resume after lesson</span></li>
+    </ul></div>
+    <div class="task-section"><span class="task-section-label label-eam">EAM310 &mdash; Week 3 (after Korean)</span><ul class="task-list">
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">FCM Ch. 25</span> &mdash; Diagnosis by Palpation (28 Pulse Qualities) &middot; Type full notes (23 pp)</span></li>
     </ul></div>
     <div class="task-section"><span class="task-section-label label-hammer">Hammer Ch. 4&ndash;11 &mdash; companion to FCM Ch. 25 (pulse diagnosis)</span><ul class="task-list">
@@ -184,34 +214,10 @@ if('serviceWorker' in navigator){
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 10</span> &mdash; Size: Width &amp; Length &middot; Cross-reference<br><span class="cp">Maps to FCM thin, long, short pulses</span></span></li>
       <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">Hammer Ch. 11</span> &mdash; Shape &middot; Cross-reference<br><span class="cp">Maps to FCM slippery, wiry, tight pulses</span></span></li>
     </ul></div>
-    <div class="note-box">Type FCM Ch. 25 fully first, then cross-reference Hammer chapter by chapter. Full day &mdash; no commitments.</div>
-  </div>
-</div>
-
-<!-- DAY 3 -->
-<div class="day" id="day3">
-  <div class="day-header" onclick="toggleDay('day3')">
-    <span class="day-num">Day 3</span><span class="day-date">Mon Jun 29</span>
-    <span class="day-label">Korean 9AM &middot; AC300 &mdash; MOA framework + LU, LI, ST, SP</span>
-    <div class="day-tags"><span class="tag tag-block">Korean 9AM</span><span class="tag tag-ac">AC300</span></div>
-    <span class="chevron" id="chev-day3">&#8250;</span>
-  </div>
-  <div class="day-body" id="body-day3">
-    <div class="task-section"><span class="task-section-label label-block">Fixed</span><ul class="task-list">
-      <li><span class="check" style="border-color:#9988bb;color:#9988bb">&#9670;</span><span class="task-text">Korean &mdash; Soohyeon 9:00 AM (iTalki) &middot; Resume after lesson</span></li>
+    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; overflow buffer</span><ul class="task-list">
+      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text">Complete any ST / SP channels not finished yesterday &middot; Redraw as needed<br><span class="cp">Only if FCM Ch. 25 + Hammer are done first</span></span></li>
     </ul></div>
-    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 1</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 11&ndash;16</span> &mdash; Channel Theory Overview &middot; Type full notes<br><span class="cp">CAM p. 1&ndash;68 = review from EAM302/303 &mdash; pull old notes, do not retype</span></span></li>
-    </ul></div>
-    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 2</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 66&ndash;68</span> + <span class="cr">MOA p. 73&ndash;75</span> &mdash; Lung Channel &middot; Type notes + draw<br><span class="cp">After: pull Lung card &middot; active recall</span></span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 95&ndash;99</span> &mdash; Large Intestine Channel &middot; Type notes + draw<br><span class="cp">After: pull LI card &middot; active recall</span></span></li>
-    </ul></div>
-    <div class="task-section"><span class="task-section-label label-ac">AC300 &mdash; Week 3</span><ul class="task-list">
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">CAM p. 68&ndash;71</span> + <span class="cr">MOA p. 125&ndash;129</span> &mdash; Stomach Channel &middot; Type notes + draw<br><span class="cp">After: pull Stomach card &middot; active recall</span></span></li>
-      <li onclick="checkTask(this)"><span class="check"></span><span class="task-text"><span class="cr">MOA p. 177&ndash;181</span> &mdash; Spleen Channel &middot; Type notes + draw<br><span class="cp">After: pull Spleen card &middot; active recall</span></span></li>
-    </ul></div>
-    <div class="note-box">Korean 9AM then straight into AC300 after lesson. Full afternoon available.</div>
+    <div class="note-box">Korean 9AM then straight into FCM Ch. 25 after lesson. Full afternoon available. Any AC300 channels not completed yesterday can be finished here.</div>
   </div>
 </div>
 
@@ -369,8 +375,8 @@ if('serviceWorker' in navigator){
   <button class="sched-nav-btn" onclick="prevDay()">&#9664; Prev</button>
   <select class="sched-day-select" id="daySelect" onchange="renderDay(this.value)">
     <option value="0">Sat Jun 27 &mdash; Day 1 (Ch.30+31+26 / Dance 3PM)</option>
-    <option value="1">Sun Jun 28 &mdash; Day 2 (Ch.25 + Hammer Ch.4-11)</option>
-    <option value="2">Mon Jun 29 &mdash; Day 3 (Korean / AC300 LU-SP)</option>
+    <option value="1">Sun Jun 28 &mdash; Day 2 (AC300 LU-SP / Dance lesson / Plans 2-6PM)</option>
+    <option value="2">Mon Jun 29 &mdash; Day 3 (Korean / FCM Ch.25 + Hammer Ch.4-11)</option>
     <option value="3">Tue Jun 30 &mdash; Day 4 (Ch.23 + Maciocia Ch.2-8)</option>
     <option value="4">Wed Jul 1 &mdash; Day 5 (AC300 HT-KI)</option>
     <option value="5">Thu Jul 2 &mdash; Day 6 (Ch.24 + CAM Ch.13)</option>
@@ -429,39 +435,39 @@ const DAYS=[
     {h:20,t:'free',l:'Free'},
     {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Sun Jun 28',desc:'Day 2 - FCM Ch.25 + Hammer Ch.4-11 (full day)',slots:[
+  {label:'Sun Jun 28',desc:'Day 2 - AC300 MOA + LU, LI, ST, SP / Dance lesson ~12 / Plans 2-6PM',slots:[
     {h:6,t:'rest',l:'Wake / morning routine'},
-    {h:7,t:'eam',l:'FCM Ch. 25 - Diagnosis by Palpation / 28 Pulse Qualities (type notes)'},
-    {h:8,t:'eam',l:'FCM Ch. 25 - continued'},
-    {h:9,t:'eam',l:'FCM Ch. 25 - continued'},
-    {h:10,t:'hammer',l:'Hammer Ch. 4 - Taking the Pulse: Methodology (cross-ref)'},
-    {h:11,t:'hammer',l:'Hammer Ch. 5 - Classification & Nomenclature (cross-ref)'},
-    {h:12,t:'rest',l:'Lunch / break'},
-    {h:13,t:'hammer',l:'Hammer Ch. 6 Rhythm + Ch. 7 Rate (cross-ref)'},
-    {h:14,t:'hammer',l:'Hammer Ch. 8 Volume + Ch. 9 Depth (cross-ref)'},
-    {h:15,t:'hammer',l:'Hammer Ch. 10 Size + Ch. 11 Shape (cross-ref)'},
-    {h:16,t:'journal',l:'Pulse/Tongue Journal - record observations'},
-    {h:17,t:'free',l:'Free'},
+    {h:7,t:'rest',l:'Light prep / breakfast'},
+    {h:8,t:'ac',l:'MOA p. 11-16 Channel Theory + CAM p. 66-68 + MOA p. 73-75 Lung (type + draw)'},
+    {h:9,t:'ac',l:'MOA p. 95-99 - Large Intestine channel (type + draw) / Deadman card recall'},
+    {h:10,t:'ac',l:'CAM p. 68-71 + MOA p. 125-129 - Stomach channel (type + draw)'},
+    {h:11,t:'ac',l:'MOA p. 177-181 - Spleen channel (type + draw) / Deadman recall - hard stop 11:30'},
+    {h:12,t:'block',l:'Dance lesson (~12 or 1PM - hard block)'},
+    {h:13,t:'block',l:'Dance lesson / travel'},
+    {h:14,t:'block',l:'Plans 2-6PM (hard block)'},
+    {h:15,t:'block',l:'Plans - continued'},
+    {h:16,t:'block',l:'Plans - continued'},
+    {h:17,t:'block',l:'Plans - continued'},
     {h:18,t:'rest',l:'Dinner'},
-    {h:19,t:'free',l:'Free'},
+    {h:19,t:'journal',l:'Pulse/Tongue Journal - record observations'},
     {h:20,t:'free',l:'Free'},
     {h:21,t:'free',l:'Free'}
   ]},
-  {label:'Mon Jun 29',desc:'Day 3 - Korean 9AM / AC300 LU, LI, ST, SP',slots:[
+  {label:'Mon Jun 29',desc:'Day 3 - Korean 9AM / FCM Ch.25 + Hammer Ch.4-11 (afternoon)',slots:[
     {h:6,t:'rest',l:'Wake / morning routine'},
     {h:7,t:'rest',l:'Light prep before Korean'},
     {h:8,t:'rest',l:'Prepare for Korean lesson'},
     {h:9,t:'block',l:'KOREAN - Soohyeon / iTalki (hard block)'},
     {h:10,t:'block',l:'KOREAN - continued'},
     {h:11,t:'rest',l:'Break after lesson / lunch'},
-    {h:12,t:'ac',l:'MOA p. 11-16 Channel Theory + CAM p. 66-68 + MOA p. 73-75 Lung (type + draw)'},
-    {h:13,t:'ac',l:'MOA p. 95-99 - Large Intestine channel (type + draw) / Deadman card recall'},
-    {h:14,t:'ac',l:'CAM p. 68-71 + MOA p. 125-129 - Stomach channel (type + draw)'},
-    {h:15,t:'ac',l:'Stomach - continued / Deadman card recall'},
-    {h:16,t:'ac',l:'MOA p. 177-181 - Spleen channel (type + draw) / Deadman card recall'},
-    {h:17,t:'journal',l:'Pulse/Tongue Journal - record observations'},
+    {h:12,t:'eam',l:'FCM Ch. 25 - Diagnosis by Palpation / 28 Pulse Qualities (type notes)'},
+    {h:13,t:'eam',l:'FCM Ch. 25 - continued'},
+    {h:14,t:'eam',l:'FCM Ch. 25 - finish'},
+    {h:15,t:'hammer',l:'Hammer Ch. 4 + Ch. 5 - Methodology & Classification (cross-ref)'},
+    {h:16,t:'hammer',l:'Hammer Ch. 6+7 Rhythm/Rate + Ch. 8+9 Volume/Depth (cross-ref)'},
+    {h:17,t:'hammer',l:'Hammer Ch. 10+11 Size & Shape (cross-ref) / AC300 overflow if done early'},
     {h:18,t:'rest',l:'Dinner'},
-    {h:19,t:'free',l:'Free'},
+    {h:19,t:'journal',l:'Pulse/Tongue Journal - record observations'},
     {h:20,t:'free',l:'Free'},
     {h:21,t:'free',l:'Free'}
   ]},
